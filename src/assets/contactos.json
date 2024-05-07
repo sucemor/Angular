@@ -1,0 +1,66 @@
+[
+  {
+    "nombre": "Lucas",
+    "apellidos": "González Martínez",
+    "correo": "lucas.gonzalez@industriasabc.com",
+    "telefono": "+34 912 345 678",
+    "observaciones": "Contactar preferentemente por la mañana.",
+    "cliente": "Industrias ABC"
+  },
+  {
+    "nombre": "Marta",
+    "apellidos": "Ruiz López",
+    "correo": "marta.ruiz@construccionesxyz.com",
+    "telefono": "+34 914 567 890",
+    "observaciones": "Gestiona las compras mayores.",
+    "cliente": "Construcciones XYZ"
+  },
+  {
+    "nombre": "Carlos",
+    "apellidos": "Jiménez Cerezo",
+    "correo": "carlos.jc@tecnosoluciones.com",
+    "telefono": "+34 916 234 567",
+    "observaciones": "Interesado en nuevas tecnologías.",
+    "cliente": "TecnoSoluciones"
+  },
+  {
+    "nombre": "Ana",
+    "apellidos": "Fernández Castro",
+    "correo": "a.fernandez@productosjkl.com",
+    "telefono": "+34 915 678 910",
+    "observaciones": "Responsable de logística y distribución.",
+    "cliente": "Productos JKL"
+  },
+  {
+    "nombre": "Sergio",
+    "apellidos": "Mora Velasco",
+    "correo": "sergio.mv@serviciosmno.com",
+    "telefono": "+34 917 345 671",
+    "observaciones": "Contacto principal para servicios financieros.",
+    "cliente": "Servicios MNO"
+  },
+  {
+    "nombre": "Laura",
+    "apellidos": "Sánchez Morán",
+    "correo": "laura.sm@energiapqr.com",
+    "telefono": "+34 918 234 556",
+    "observaciones": "Especialista en proyectos de energía renovable.",
+    "cliente": "Energía PQR"
+  },
+  {
+    "nombre": "David",
+    "apellidos": "Ortega Blanco",
+    "correo": "d.ortega@mediosdefcomunicacion.com",
+    "telefono": "+34 913 987 654",
+    "observaciones": "Punto de contacto para campañas publicitarias.",
+    "cliente": "Medios DEF Comunicación"
+  },
+  {
+    "nombre": "Patricia",
+    "apellidos": "García Maldonado",
+    "correo": "patricia.gm@viajesrst.com",
+    "telefono": "+34 919 876 543",
+    "observaciones": "Maneja relaciones con agencias de viajes internacionales.",
+    "cliente": "Viajes RST"
+  }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "Nombre": "Cliente A",
+        "Ciudad": "Ciudad A",
+        "Direccion": "Calle A, 123",
+        "Correo": "clienteA@example.com",
+        "Estado": "Posible cliente",
+        "fechaCreacion": "2024-05-06"
+    },
+    {
+        "Nombre": "Cliente B",
+        "Ciudad": "Ciudad B",
+        "Direccion": "Calle B, 456",
+        "Correo": "clienteB@example.com",
+        "Estado": "Intento de Contacto",
+        "fechaCreacion": "2024-05-06"
+    },
+    {
+        "Nombre": "Cliente C",
+        "Ciudad": "Ciudad C",
+        "Direccion": "Calle C, 789",
+        "Correo": "clienteC@example.com",
+        "Estado": "Contratado",
+        "fechaCreacion": "2024-05-05"
+    },
+    {
+        "Nombre": "Cliente D",
+        "Ciudad": "Ciudad D",
+        "Direccion": "Calle D, 012",
+        "Correo": "clienteD@example.com",
+        "Estado": "Terminado",
+        "fechaCreacion": "2024-05-04"
+    },
+    {
+        "Nombre": "Cliente E",
+        "Ciudad": "Ciudad E",
+        "Direccion": "Calle E, 345",
+        "Correo": "clienteE@example.com",
+        "Estado": "Cancelado",
+        "fechaCreacion": "2024-05-03"
+    }
+]

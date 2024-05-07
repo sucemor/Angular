@@ -1,0 +1,66 @@
+<div class="container-fluid m-0 p-0 general">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md bg-body-tertiary py-3">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <img src="../../assets/imagenes/logo_aumentur.svg" alt="Logo" class="navbar-logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <div class="d-flex flex-row align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="clientes" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="contactos" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Contactos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" >Ajustes</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle navbar-usuario"  role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                @if (user !== "") {
+                                {{ user }}
+                                }@else if (user == null) { Iniciar sesión }@else{ Iniciar sesión }
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"  (click)="salir()">Cerrar sesion</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal del login -->
+    @if (user === "") {
+    <app-login></app-login>
+    }@else if (user == null) {
+    <app-login></app-login>
+    }
+
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+
+    <footer class="footer py-2">
+        <div class="text-center">
+            <p class="footer-contenido">
+                Aumentur CRM - Desarrollado por Samuel Uceda Moreno para Aumentur
+            </p>
+            <p class="footer-contenido">En colaboración con IES ILIBERIS</p>
+            <p class="text-center footer-blanco">
+                &#169; 2024 Aumentur. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+</div>

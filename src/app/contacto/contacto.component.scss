@@ -1,0 +1,109 @@
+.tabla-principal {
+    text-transform: capitalize;
+    border-radius: 5px !important;
+    box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
+
+    &.table {
+        // Asegúrate de que .table está siendo aplicado si es necesario
+        border: 1px solid #a7a7a7 !important;
+    }
+
+    thead tr {
+        border-radius: 50% !important;
+    }
+
+    thead tr td {
+        font-size: 1.5rem;
+        font-weight: bold;
+        background-color: #8AB3CF;
+    }
+
+    tbody tr:nth-child(even) td {
+        // Aplica estilos a cada fila dentro de tbody
+        background-color: #BDD1DE;
+    }
+
+    tbody tr:hover td {
+        // Aplica estilos a cada fila dentro de tbody
+        cursor: pointer;
+        background-color: #4180AB;
+        color: white;
+    }
+}
+
+.hola {
+    border-radius: 50% !important;
+}
+
+.texto {
+    font-size: 1.3rem;
+}
+
+.boton {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    outline: none;
+    border: none;
+    background-color: #8AB3CF;
+    color: white;
+    border-radius: 20px;
+    padding: 0 0.58rem;
+
+    // &-icono{
+    //     color: black;
+    // }
+}
+
+// Formulario para añadir un usuario
+.formulario {
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 1px 1px 4px rgba($color: black, $alpha: 0.6);
+    padding: 2rem 2rem;
+    margin: 2rem 0;
+    // &-izquierda{
+    //     width: 40%;
+    // }
+
+    // &-derecha{
+    //     width: 40%;
+    // }
+    &-seleccionar{
+        background-color: red;
+    }
+
+    & .form-floating {
+        margin: 0;
+        padding: 0;
+        height: fit-content;
+
+        & .form-control {
+            background-color: rgba($color: #BDD1DE, $alpha: 0.7);
+            border-radius: 20px;
+            height: fit-content;
+        }
+
+        & .observaciones {
+            background-color: rgba($color: #BDD1DE, $alpha: 0.7);
+            min-height: 10rem;
+        }
+    }
+
+    &-boton-cerrar {
+        background-color: #F25757;
+        color: white;
+        height: fit-content;
+        text-transform: capitalize;
+    }
+
+    &-boton-guardar {
+        background-color: #44C08A;
+        color: white;
+        text-transform: capitalize;
+
+        &-icono {
+            color: black;
+            margin-right: 0.5rem;
+        }
+    }
+}

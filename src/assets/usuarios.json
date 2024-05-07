@@ -1,0 +1,50 @@
+[
+    {
+      "id": 1,
+      "username": "pepe",
+      "email": "usuario1@ejemplo.com",
+      "password": "pepe"
+    },
+    {
+      "id": 2,
+      "username": "Usuario2",
+      "email": "usuario2@ejemplo.com",
+      "password": "passwordSegura2024"
+    },
+    {
+      "id": 3,
+      "username": "Usuario3",
+      "email": "usuario3@ejemplo.com",
+      "password": "EjemploDepassword!"
+    },
+    {
+      "id": 4,
+      "username": "Usuario4",
+      "email": "usuario4@ejemplo.com",
+      "password": "Usuario12345*"
+    },
+    {
+      "id": 5,
+      "username": "Usuario5",
+      "email": "usuario5@ejemplo.com",
+      "password": "MiClaveSecreta"
+    },
+    {
+      "id": 6,
+      "username": "Usuario6",
+      "email": "usuario6@ejemplo.com",
+      "password": "passwordSegura!"
+    },
+    {
+      "id": 7,
+      "username": "Usuario7",
+      "email": "usuario7@ejemplo.com",
+      "password": "EjemploDeClave123"
+    },
+    {
+      "id": 8,
+      "username": "Usuario8",
+      "email": "usuario8@ejemplo.com",
+      "password": "Usuario2024*"
+    }
+  ]

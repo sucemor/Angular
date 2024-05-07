@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+/* Versiones en cursiva */
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/Lato/Lato-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+// <link rel="stylesheet" href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}">
+// @import url("../assets/bootstrap-icons-1.11.3/bootstrap-icons-1.11.3/font/bootstrap-icons.css");
+* {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.general {
+    background-color: #E4EBF0;
+}
+
+// FOOTER
+.footer {
+    font-size: 1.25rem;
+    background-color: #BDD1DE;
+
+    &-contenido {
+        color: #4180AB;
+    }
+
+    &-blanco {
+        color: #E4EBF0;
+        text-shadow: 1.5px 0px 1px rgba($color: black, $alpha: 0.5),
+            0px 1.5px 1px rgba($color: black, $alpha: 0.5),
+            -1.5px 0px 1px rgba($color: black, $alpha: 0.5),
+            0px -1.5px 1px rgba($color: black, $alpha: 0.5);
+    }
+}
+
+//-----------------------------------------------------------------
+// NAVBAR
+
+.navbar {
+    width: 100%;
+    background-color: #4180AB !important;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-logo {
+        width: 55%;
+    }
+
+    &-usuario {
+        background-color: white;
+        border-radius: 10px;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* Estilos para enlaces activos e inactivos en la barra de navegación */
+.nav-link {
+    color: black;
+    /* Color por defecto */
+}
+
+/* Estilo para el enlace activo */
+.nav-link.active {
+    color: white;
+    /* Color cuando el enlace está activo */
+}
