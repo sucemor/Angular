@@ -59,18 +59,15 @@
     border-radius: 20px;
     background-color: white;
     box-shadow: 1px 1px 4px rgba($color: black, $alpha: 0.6);
-    padding: 2rem 2rem;
+    padding: 2.375rem 2.625rem;
     margin: 2rem 0;
-    // &-izquierda{
-    //     width: 40%;
-    // }
+    width: fit-content;
 
-    // &-derecha{
-    //     width: 40%;
-    // }
-    &-seleccionar{
-        background-color: red;
-    }
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 54px;
+
 
     & .form-floating {
         margin: 0;
@@ -80,12 +77,24 @@
         & .form-control {
             background-color: rgba($color: #BDD1DE, $alpha: 0.7);
             border-radius: 20px;
-            height: fit-content;
+            width: 21.875rem;
+            height: 2.625rem;
+
+            
+        }
+        
+        &-telefonos{
+            background-color: red !important;
         }
 
-        & .observaciones {
+        & .form-control.telefonos{
+            width: 6.625rem;
+        }
+
+        & textarea.observaciones {
             background-color: rgba($color: #BDD1DE, $alpha: 0.7);
             min-height: 10rem;
+            width: 21.875rem;
         }
     }
 
@@ -107,3 +116,10 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .formulario {
+      // Espacio entre medias de las dos secciones de formulario
+      gap: 3vw;
+    }
+  }

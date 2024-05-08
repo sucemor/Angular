@@ -1,0 +1,42 @@
+[
+    {
+        "fechaCreado": "2024-05-01",
+        "titulo": "Especificaciones del proyecto X",
+        "id": 101,
+        "descripcion": "Documento detallado con las especificaciones técnicas del proyecto X.",
+        "ficheroAdjuntos": ["specs_project_x.pdf", "budget_estimate.xlsx"],
+        "clienteId": 1
+    },
+    {
+        "fechaCreado": "2024-05-02",
+        "titulo": "Informe de avance del segundo trimestre",
+        "id": 102,
+        "descripcion": "Resumen de los avances y obstáculos en los últimos tres meses.",
+        "ficheroAdjuntos": ["Q2_report.pdf", "presentation.pptx"],
+        "clienteId": 1
+    },
+    {
+        "fechaCreado": "2024-05-03",
+        "titulo": "Manual de usuario del software Y",
+        "id": 103,
+        "descripcion": "Guía detallada para los usuarios finales del software Y.",
+        "ficheroAdjuntos": ["user_manual_Y.pdf", "quick_start_guide.pdf"],
+        "clienteId": 3
+    },
+    {
+        "fechaCreado": "2024-05-04",
+        "titulo": "Propuesta comercial para cliente Z",
+        "id": 104,
+        "descripcion": "Propuesta detallada incluyendo plan de trabajo y cotizaciones para el cliente Z.",
+        "ficheroAdjuntos": ["proposal_client_Z.pdf", "terms_conditions.pdf"],
+        "clienteId": 8
+    },
+    {
+        "fechaCreado": "2024-05-05",
+        "titulo": "Plan de marketing 2024",
+        "id": 105,
+        "descripcion": "Planificación estratégica del marketing para el año 2024.",
+        "ficheroAdjuntos": ["marketing_plan_2024.pdf", "ad_campaigns.xlsx"],
+        "clienteId": 8
+    }
+]

@@ -4,7 +4,7 @@
         <i class="bi bi-search buscador-icono" (click)="buscarBoton()"></i>
     </div>
 
-    <select name="miselect" class="opciones ms-3" [(ngModel)]="selectedCliente">
+    <select name="miselect" class="opciones ms-3" [(ngModel)]="selectedContacto">
         @for (valore of listaContactos; track $index) {
             <option [value]="valore">
                 {{valore}}

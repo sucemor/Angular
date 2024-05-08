@@ -103,7 +103,7 @@
 
 
   <div class="container-fluid d-flex flex-row justify-content-between align-items-start my-4">
-    <app-buscador [datosParaHijo]="ARclientes"></app-buscador>
+    <app-buscador></app-buscador>
 
     <p class="texto text-center">
       {{tamano}} Clientes encontrados
@@ -127,7 +127,7 @@
       </thead>
       <tbody>
         @for (cliente of ARclientes; track $index) {
-        <tr>
+        <tr (click)="verDetalles(cliente.id)">
           <td>{{ cliente.Nombre }}</td>
           <td>{{ cliente.Ciudad }}</td>
           <td>{{ cliente.Direccion }}</td>

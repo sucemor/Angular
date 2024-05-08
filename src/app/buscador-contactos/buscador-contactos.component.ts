@@ -15,17 +15,19 @@ import { debounceTime } from 'rxjs/operators';
   styleUrl: './buscador-contactos.component.scss'
 })
 export class BuscadorContactosComponent {
-// Recogo los datos del padre
-@Input() datosParaHijo: any;
+// Declaración de variables--------------------------------------------------------------
+ARtemporal: any[] = [];
 
 // ¿Con cual propiedad se desea filtrar?
 // Lista de propiedades
 listaContactos: string[] = ["Nombre", "Apellidos", "Correo", "Teléfono", "Observaciones", "cliente"];
+
 // El valor por defecto del select será siempre el primer valor
-selectedCliente = this.listaContactos[0];
-// Creo la variable que almacenara la cadena escrita en el input
-busquedaControl = new FormControl(); // Establecer el tiempo de búsquedad
-terminoBusqueda: string = '';// Propiedad para almacenar el valor del input
+selectedContacto = this.listaContactos[0];
+
+// Almacena la busquedad del usuario, además recoge el valor automaticamente
+// Y permite añadir un debounce
+busquedaControl = new FormControl();
 
 constructor(private ARCompartido: ContactosCompartidoService) { 
   this.busquedaControl.valueChanges.pipe(
@@ -43,41 +45,40 @@ buscar(terminoBusqueda: string) {
   // Elimino las mayusculas
   terminoBusqueda =  terminoBusqueda.toLocaleLowerCase();
   // Mostrar alerta con el término de búsqueda
-  switch (this.selectedCliente) {
+  switch (this.selectedContacto) {
     case this.listaContactos[0]:
-      this.datosParaHijo = contactos.filter(elemento => elemento.nombre.toLowerCase().includes(terminoBusqueda));
+      this.ARtemporal = contactos.filter(elemento => elemento.nombre.toLowerCase().includes(terminoBusqueda));
       break;
 
     case this.listaContactos[1]:
-      this.datosParaHijo = contactos.filter(elemento => elemento.apellidos.toLowerCase().includes(terminoBusqueda));
+      this.ARtemporal = contactos.filter(elemento => elemento.apellidos.toLowerCase().includes(terminoBusqueda));
       break;
 
     case this.listaContactos[2]:
-      this.datosParaHijo = contactos.filter(elemento => elemento.correo.toLowerCase().includes(terminoBusqueda));
-      console.log(this.datosParaHijo);
+      this.ARtemporal = contactos.filter(elemento => elemento.correo.toLowerCase().includes(terminoBusqueda));
+      console.log(this.ARtemporal);
       break;
 
     case this.listaContactos[3]:
-      this.datosParaHijo = contactos.filter(elemento => elemento.telefono.toLowerCase().includes(terminoBusqueda));
+      this.ARtemporal = contactos.filter(elemento => elemento.telefono.toLowerCase().includes(terminoBusqueda));
       break;
 
     case this.listaContactos[4]:
-      this.datosParaHijo = contactos.filter(elemento => elemento.observaciones.toLowerCase().includes(terminoBusqueda));
+      this.ARtemporal = contactos.filter(elemento => elemento.observaciones.toLowerCase().includes(terminoBusqueda));
       break;
 
     case this.listaContactos[5]:
-      this.datosParaHijo = contactos.filter(elemento => elemento.cliente.toLowerCase().includes(terminoBusqueda));
+      this.ARtemporal = contactos.filter(elemento => elemento.cliente.toLowerCase().includes(terminoBusqueda));
       break;
 
 
     default:
-      this.datosParaHijo = contactos.filter(elemento => elemento.nombre.toLowerCase().includes(terminoBusqueda));
+      this.ARtemporal = contactos.filter(elemento => elemento.nombre.toLowerCase().includes(terminoBusqueda));
       break;
   }//Acaba el switch
-  this.terminoBusqueda = terminoBusqueda;
-  // Guardo los datos en el servicioº
-  this.ARCompartido.actualizarDatosCompartidos(this.datosParaHijo);
-  console.log(this.ARCompartido);
+
+  // Guardo los datos en el servicio
+  this.ARCompartido.actualizarDatosCompartidos(this.ARtemporal);
 }//Acaba la función buscar
 
 /**

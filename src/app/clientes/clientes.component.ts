@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BuscadorComponent } from '../buscador/buscador.component';
 import { ClientesCompartidoService } from '../clientes-compartido.service';
+import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario.service';
 
 @Component({
@@ -11,13 +12,17 @@ import { UsuarioService } from '../usuario.service';
   styleUrl: './clientes.component.scss'
 })
 export class ClientesComponent {
+  // Varables
   ARclientes: any[] = []; // Declare una variable para almacenar los datos JSON
   tamano: any =  1;
   user: string | null = "";
+  estadoFormulario: boolean = false;
 
-  constructor(private clientesCompartido: ClientesCompartidoService) {
+  //Cosntructor
+  constructor(private clientesCompartido: ClientesCompartidoService, private router: Router) {
   }
 
+  // Función de arranque
   ngOnInit(): void {
     // Subscripción a un observable para datos compartidos
     this.clientesCompartido.datosCompartidos$.subscribe(datos => {
@@ -26,14 +31,19 @@ export class ClientesComponent {
     });
   }
 
-
-  //Mostrar formulario
-  estadoFormulario: boolean = false;
-
+  //Código
   cambiarEstadoFormulario(): void {
     if(this.estadoFormulario === false)
       this.estadoFormulario = true;
     else
       this.estadoFormulario = false;
+  }
+
+  /**
+   * Función encargada de redireccionar a detalles según el id de un cliente
+   * @param id Id del cliente a mostrar
+   */
+  verDetalles(id: number) {
+    this.router.navigate(['/clientes', id]);
   }
 }

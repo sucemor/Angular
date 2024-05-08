@@ -17,19 +17,22 @@ import { debounceTime } from 'rxjs/operators';
   styleUrl: './buscador.component.scss'
 })
 export class BuscadorComponent {
-  // Recogo los datos del padre
-  @Input() datosParaHijo: any;
+  // Declaración de variables--------------------------------------------------------------
+  ARtemporal: any[] = [];
 
   // ¿Con cual propiedad se desea filtrar?
   // Lista de propiedades
   listaClientes: string[] = ["Nombre", "Ciudad", "Dirección", "Correo", "Estado", "fechaCreacion"];
+
   // El valor por defecto del select será siempre el primer valor
   selectedCliente = this.listaClientes[0];
-  // Creo la variable que almacenara la cadena escrita en el input
-  busquedaControl = new FormControl(); // Establecer el tiempo de búsquedad
-  terminoBusqueda: string = '';// Propiedad para almacenar el valor del input
 
-  constructor(private ARCompartido: ClientesCompartidoService) { 
+  // Almacena la busquedad del usuario, además recoge el valor automaticamente
+  // Y permite añadir un debounce
+  busquedaControl = new FormControl();
+
+  // Constructor--------------------------------------------------------------------------
+  constructor(private clientesCompartido: ClientesCompartidoService) {
     this.busquedaControl.valueChanges.pipe(
       debounceTime(1000)  // 1 segundo de espera después de la última entrada del usuario
     ).subscribe(value => {
@@ -37,6 +40,9 @@ export class BuscadorComponent {
     });
   }
 
+  // No se necesita el onInit, debido a que no me interesa trabajar con los datos que haya en clientesCompartido, si no pasarle datos
+
+  // Código----------------------------------------------------------------------
   // Envento para recoger el dato escrito
   /**
    * Función encargada de filtrar los datos a partir del termido dado
@@ -47,38 +53,38 @@ export class BuscadorComponent {
     // Mostrar alerta con el término de búsqueda
     switch (this.selectedCliente) {
       case this.listaClientes[0]:
-        this.datosParaHijo = clientes.filter(elemento => elemento.Nombre.toLowerCase().includes(terminoBusqueda));
+        this.ARtemporal = clientes.filter(elemento => elemento.Nombre.toLowerCase().includes(terminoBusqueda));
         break;
 
       case this.listaClientes[1]:
-        this.datosParaHijo = clientes.filter(elemento => elemento.Ciudad.toLowerCase().includes(terminoBusqueda));
+        this.ARtemporal = clientes.filter(elemento => elemento.Ciudad.toLowerCase().includes(terminoBusqueda));
         break;
 
       case this.listaClientes[2]:
-        this.datosParaHijo = clientes.filter(elemento => elemento.Direccion.toLowerCase().includes(terminoBusqueda));
-        console.log(this.datosParaHijo);
+        this.ARtemporal = clientes.filter(elemento => elemento.Direccion.toLowerCase().includes(terminoBusqueda));
         break;
 
       case this.listaClientes[3]:
-        this.datosParaHijo = clientes.filter(elemento => elemento.Correo.toLowerCase().includes(terminoBusqueda));
+        this.ARtemporal = clientes.filter(elemento => elemento.Correo.toLowerCase().includes(terminoBusqueda));
         break;
 
       case this.listaClientes[4]:
-        this.datosParaHijo = clientes.filter(elemento => elemento.Estado.toLowerCase().includes(terminoBusqueda));
+        this.ARtemporal = clientes.filter(elemento => elemento.Estado.toLowerCase().includes(terminoBusqueda));
         break;
 
       case this.listaClientes[5]:
-        this.datosParaHijo = clientes.filter(elemento => elemento.fechaCreacion.toLowerCase().includes(terminoBusqueda));
+        this.ARtemporal = clientes.filter(elemento => elemento.fechaCreacion.toLowerCase().includes(terminoBusqueda));
         break;
 
 
       default:
-        this.datosParaHijo = clientes.filter(elemento => elemento.Nombre.toLowerCase().includes(terminoBusqueda));
+        this.ARtemporal = clientes.filter(elemento => elemento.Nombre.toLowerCase().includes(terminoBusqueda));
         break;
     }//Acaba el switch
-    this.terminoBusqueda = terminoBusqueda;
+    // this.terminoBusqueda = terminoBusqueda;
+    console.log(this.ARtemporal);
     // Guardo los datos en el servicioº
-    this.ARCompartido.actualizarDatosCompartidos(this.datosParaHijo);
+    this.clientesCompartido.actualizarDatosCompartidos(this.ARtemporal);
   }//Acaba la función buscar
 
   /**

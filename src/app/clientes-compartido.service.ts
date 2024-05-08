@@ -16,4 +16,9 @@ export class ClientesCompartidoService {
   public actualizarDatosCompartidos(datos: any[]) {
     this.datosCompartidosSubject.next(datos);
   }
+
+  public filtrarPorId(id: number){
+    let devolver = clientes.filter(elemento => elemento.id === id);
+    return devolver;
+  }
 }

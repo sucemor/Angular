@@ -1,117 +1,98 @@
 <div class="container">
   @if (estadoFormulario) {
-  <form class="formulario row justify-content-between">
+  <form class="formulario">
     <!-- Primer grupo -->
-    <div class="col-6 formulario-izquierda">
-      <div class="row justify-content-between flotante">
-        <div class="col-3 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
-          <label for="Nombre">Nombre</label>
+    <div class="formulario-izquierda">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" />
+        <label for="Nombre">Nombre</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Apellidos" placeholder="Introduzca el apellidos" />
+        <label for="Apellidos">Apellidos</label>
+      </div>
+
+      <div class="formulario-telefonos">
+        <div class="form-floating">
+          <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono1" />
+          <label for="telefono1">Teléfono</label>
         </div>
-        <div class="col-7 form-floating flotante-derecha">
-          <input type="text" class="form-control" id="Correo" placeholder="Correo">
-          <label for="Correo">Correo</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="telefono1WhatApp" checked />
+          <label class="form-check-label" for="telefono1WhatApp">
+            ¿Es un Whatsapp?
+          </label>
         </div>
       </div>
 
-      <div class="row justify-content-between flotante">
-        <div class="col-3 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="telefono" placeholder="telefono">
-          <label for="telefono">Teléfono</label>
+      <div class="formulario-telefonos">
+        <div class="form-floating">
+          <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono2" />
+          <label for="telefono2">Teléfono 2</label>
         </div>
-        <div class="col-7 form-floating flotante-derecha">
-          <input type="text" class="form-control" id="web" placeholder="Escriba la Web">
-          <label for="web">Página web</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="telefono2WhatApp" checked />
+          <label class="form-check-label" for="telefono2WhatApp">
+            ¿Es un Whatsapp?
+          </label>
         </div>
       </div>
 
-      <div class="row justify-content-between flotante">
-        <div class="col-3 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="fax" placeholder="Escriba el fax">
-          <label for="fax">Fax</label>
-        </div>
-        <div class="col-7 form-floating flotante-seleccionar">
-          <select class="form-select" id="encargado" aria-label="Floating label select example">
-            <option selected>Asignar persona a cargo</option>
-            <option value="1">María</option>
-            <option value="2">Pepe</option>
-            <option value="3">José</option>
-          </select>
-          <label for="encargado">Selecciona una persona a cargo</label>
-        </div>
+      <div class="form-floating">
+        <select class="form-select" id="encargado" aria-label="Floating label select example">
+          <option selected>Cliente asignado</option>
+          <option value="1">María</option>
+          <option value="2">Pepe</option>
+          <option value="3">José</option>
+        </select>
+        <label for="encargado">Selecciona un Cliente (Empresa) que se encargará
+        </label>
       </div>
-      <div class="w-100 m-0 p-0 form-floating">
-        <textarea class="w-100 form-control observaciones" placeholder="Deje sus observaciones aquí..." id="floatingTobservacionesextarea2" style="height: 100px"></textarea>
-        <label for="observaciones">Observaciones</label>
-      </div>
-      
     </div>
     <!-- Grupo de la derecha -->
-    <div class="col-4 formulario-derecha">
-      <div class="row justify-content-between flotante">
-        <div class="col-5 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="Ciudad" placeholder="Ciudad">
-          <label for="Ciudad">Ciudad</label>
-        </div>
-        <div class="col-5 form-floating flotante-derecha">
-          <input type="text" class="form-control" id="codigo" placeholder="Código postal">
-          <label for="codigo">Código postal</label>
-        </div>
+    <div class="formulario-derecha">
+      <!-- Correo -->
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Correo" placeholder="Correo" />
+        <label for="Correo">Correo</label>
       </div>
 
-      <div class="row justify-content-between flotante">
-        <div class="col-5 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="Calle" placeholder="Calle">
-          <label for="Calle">Calle</label>
-        </div>
-        <div class="col-5 form-floating flotante-derecha">
-          <input type="text" class="form-control" id="numerocalle" placeholder="Número de calle">
-          <label for="numerocalle">Número de calle</label>
-        </div>
+      <!-- Observaciones -->
+      <div class="form-floating">
+        <textarea class="form-control observaciones" placeholder="Deje sus observaciones aquí..."
+          id="floatingTobservacionesextarea2" style="height: 100px"></textarea>
+        <label for="observaciones">Observaciones</label>
       </div>
 
-      
-      <div class="row justify-content-between flotante">
-        <div class="col-5 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="Calle" placeholder="Calle">
-          <label for="Calle">Calle</label>
-        </div>
-        <div class="col-5 form-floating flotante-derecha">
-          <input type="text" class="form-control" id="numerocalle" placeholder="Número de calle">
-          <label for="numerocalle">Número de calle</label>
-        </div>
-      </div>
-
-      <div class="row justify-content-between flotante">
-        <div class="col-5 form-floating mb-3 flotante-izquierda">
-          <input type="text" class="form-control" id="region" placeholder="region">
-          <label for="region">Región</label>
-        </div>
-        <div class="col-5 form-floating flotante-derecha">
-          <input type="text" class="form-control" id="pais" placeholder="País">
-          <label for="pais">País</label>
-        </div>
-      </div>
-
+      <!-- Botones -->
       <div class="row justify-content-between">
-        <button class="col-4 btn text-capitalize formulario-boton-cerrar">CERRAR</button>
-        <button class="col-4 btn text-capitalize formulario-boton-guardar"><i class="bi bi-floppy2-fill formulario-boton-guardar-icono"></i>GUARDAR</button>
+        <button class="col-4 btn text-capitalize formulario-boton-cerrar "
+        data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-custom-class="custom-tooltip"
+        data-bs-title="¿Quieres cerrar el formulario?">
+          CERRAR
+        </button>
+        <button class="col-4 btn text-capitalize formulario-boton-guardar"
+        data-bs-toggle="tooltip" data-bs-placement="top"
+        data-bs-custom-class="custom-tooltip"
+        data-bs-title="Se creará un Cliente ╰(*°▽°*)╯">
+          <i class="bi bi-floppy2-fill formulario-boton-guardar-icono"></i>GUARDAR
+        </button>
       </div>
     </div>
   </form>
-}
-
+  }
 
   <div class="container-fluid d-flex flex-row justify-content-between align-items-start my-4">
-    <app-buscador-contactos [datosParaHijo]="ARcontactos"></app-buscador-contactos>
+    <app-buscador-contactos></app-buscador-contactos>
 
-    <p class="texto text-center">
-      {{tamano}} Clientes encontrados
-    </p>
+    <p class="texto text-center">{{ tamano }} Clientes encontrados</p>
 
-    <button class="boton" (click)="cambiarEstadoFormulario()"><i class="bi bi-plus-circle text-dark me-2"></i>añadir cliente</button>
+    <button class="boton" (click)="cambiarEstadoFormulario()">
+      <i class="bi bi-plus-circle text-dark me-2"></i>añadir contacto
+    </button>
   </div>
-
 
   <div class="container-fluid hola">
     <table class="tabla-principal table border-radius table-responsive text-center">
@@ -139,6 +120,4 @@
       </tbody>
     </table>
   </div>
-
 </div>
-

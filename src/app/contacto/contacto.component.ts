@@ -12,24 +12,26 @@ import contactos from '../../assets/contactos.json';
   styleUrl: './contacto.component.scss'
 })
 export class ContactoComponent {
+  // Declaración de variables--------------------------------------------------------------
   ARcontactos: any[] = contactos; // Declare una variable para almacenar los datos JSON
   tamano = contactos.length;
-  user = "";
+  user : string = "";
+  //Mostrar formulario
+  estadoFormulario: boolean = false;
 
+  // Constructor--------------------------------------------------------------------------
   constructor(private contactosCompartido: ContactosCompartidoService) {
   }
 
+  // Al iniciar--------------------------------------------------------------------------
   ngOnInit(): void {
     this.contactosCompartido.datosCompartidos$.subscribe(datos => {
       this.ARcontactos = datos;
-      console.log(this.ARcontactos);
       this.tamano = this.ARcontactos.length;
     });
   }
 
-  //Mostrar formulario
-  estadoFormulario: boolean = false;
-
+  // Código----------------------------------------------------------------------
   cambiarEstadoFormulario(): void {
     if(this.estadoFormulario === false)
       this.estadoFormulario = true;
