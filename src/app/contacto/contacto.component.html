@@ -1,84 +1,95 @@
-<div class="container">
+<div class="container d-flex flex-column justify-content-center align-items-center">
   @if (estadoFormulario) {
-  <form class="formulario">
+  <form class="formulario row">
     <!-- Primer grupo -->
-    <div class="formulario-izquierda">
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="Nombre" placeholder="Nombre" />
-        <label for="Nombre">Nombre</label>
-      </div>
-
-      <div class="form-floating">
-        <input type="text" class="form-control" id="Apellidos" placeholder="Introduzca el apellidos" />
-        <label for="Apellidos">Apellidos</label>
-      </div>
-
-      <div class="formulario-telefonos">
-        <div class="form-floating">
-          <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono1" />
-          <label for="telefono1">Teléfono</label>
+    <div class="col-6 formulario-grupo">
+      <div class="row g-4">
+        <div class="col-12 form-floating">
+          <input type="text" class="form-control" id="Nombre" placeholder="Nombre" />
+          <label for="Nombre">Nombre</label>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="telefono1WhatApp" checked />
-          <label class="form-check-label" for="telefono1WhatApp">
-            ¿Es un Whatsapp?
+
+        <div class="col-12 form-floating">
+          <input type="text" class="form-control" id="Apellidos" placeholder="Introduzca el apellidos" />
+          <label for="Apellidos">Apellidos</label>
+        </div>
+
+        <div class="col-12 row align-items-center justify-content-between mt-4">
+          <div class="col-auto form-floating">
+            <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono1" />
+            <label for="telefono1">Teléfono</label>
+          </div>
+          <div class="col-auto form-check">
+            <input class="form-check-input" type="checkbox" value="" id="telefono1WhatApp" />
+            <label class="form-check-label" for="telefono1WhatApp">
+              ¿Es un Whatsapp?
+            </label>
+          </div>
+        </div>
+
+        <div class="col-12 row align-items-center justify-content-between mt-4">
+          <div class="col-auto form-floating">
+            <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono2" />
+            <label for="telefono2">Teléfono 2</label>
+          </div>
+          <div class="col-auto form-check">
+            <input class="form-check-input" type="checkbox" value="" id="telefono2WhatApp" />
+            <label class="form-check-label" for="telefono2WhatApp">
+              ¿Es un Whatsapp?
+            </label>
+          </div>
+        </div>
+
+        <div class="col-12 form-floating">
+          <select class="form-select seleccionables" id="encargado" aria-label="Floating label select example">
+            <option selected>Cliente asignado</option>
+            <option value="1">María</option>
+            <option value="2">Pepe</option>
+            <option value="3">José</option>
+          </select>
+          <label for="encargado">Selecciona un Cliente (Empresa) que se encargará
           </label>
         </div>
-      </div>
-
-      <div class="formulario-telefonos">
-        <div class="form-floating">
-          <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono2" />
-          <label for="telefono2">Teléfono 2</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="telefono2WhatApp" checked />
-          <label class="form-check-label" for="telefono2WhatApp">
-            ¿Es un Whatsapp?
-          </label>
-        </div>
-      </div>
-
-      <div class="form-floating">
-        <select class="form-select" id="encargado" aria-label="Floating label select example">
-          <option selected>Cliente asignado</option>
-          <option value="1">María</option>
-          <option value="2">Pepe</option>
-          <option value="3">José</option>
-        </select>
-        <label for="encargado">Selecciona un Cliente (Empresa) que se encargará
-        </label>
       </div>
     </div>
+
+
     <!-- Grupo de la derecha -->
-    <div class="formulario-derecha">
-      <!-- Correo -->
-      <div class="form-floating">
-        <input type="text" class="form-control" id="Correo" placeholder="Correo" />
-        <label for="Correo">Correo</label>
-      </div>
+    <div class="col-6 ms-5 formulario-grupo">
+      <div class="row g-4">
+        <!-- Correo -->
+        <div class="col-12 form-floating">
+          <input type="text" class="form-control" id="Correo" placeholder="Correo" />
+          <label for="Correo">Correo</label>
+        </div>
 
-      <!-- Observaciones -->
-      <div class="form-floating">
-        <textarea class="form-control observaciones" placeholder="Deje sus observaciones aquí..."
-          id="floatingTobservacionesextarea2" style="height: 100px"></textarea>
-        <label for="observaciones">Observaciones</label>
-      </div>
+        <!-- Observaciones -->
+        <div class="col-12 form-floating">
+          <textarea class="form-control observaciones" placeholder="Deje sus observaciones aquí..."
+            id="floatingTobservacionesextarea2" style="height: 100px"></textarea>
+          <label for="observaciones">Observaciones</label>
+        </div>
 
-      <!-- Botones -->
-      <div class="row justify-content-between">
-        <button class="col-4 btn text-capitalize formulario-boton-cerrar "
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        data-bs-custom-class="custom-tooltip"
-        data-bs-title="¿Quieres cerrar el formulario?">
-          CERRAR
-        </button>
-        <button class="col-4 btn text-capitalize formulario-boton-guardar"
-        data-bs-toggle="tooltip" data-bs-placement="top"
-        data-bs-custom-class="custom-tooltip"
-        data-bs-title="Se creará un Cliente ╰(*°▽°*)╯">
-          <i class="bi bi-floppy2-fill formulario-boton-guardar-icono"></i>GUARDAR
-        </button>
+        <!-- Botones -->
+        <div class="col-12">
+          <div class="row justify-content-between">
+            <div class="col-auto px-0">
+              <button class="w-100 btn btn-primary text-capitalize formulario-boton-cerrar" 
+              mat-raised-button
+              aria-label="Cerrar el formulario"
+              matTooltip="¿Quieres cerrar el formulario?">
+                CERRAR
+              </button>
+            </div>
+            <div class="col-auto px-0">
+              <button class="col-auto btn btn-primary text-capitalize formulario-boton-guardar" mat-raised-button
+                matTooltip="Se creará un Cliente ╰(*°▽°*)╯" aria-label="Guardar cliente">
+                <i class="bi bi-floppy2-fill formulario-boton-guardar-icono"></i>
+                GUARDAR
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </form>
@@ -94,7 +105,7 @@
     </button>
   </div>
 
-  <div class="container-fluid hola">
+  <div class="container-fluid">
     <table class="tabla-principal table border-radius table-responsive text-center">
       <thead>
         <tr>

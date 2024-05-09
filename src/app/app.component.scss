@@ -80,24 +80,24 @@
 }
 
 .general {
-    background-color: #E4EBF0;
+    background-color: var(--color-fondo);
 }
 
 // FOOTER
 .footer {
     font-size: 1.25rem;
-    background-color: #BDD1DE;
+    background-color: var(--color-terciario);
 
     &-contenido {
-        color: #4180AB;
+        color: var(--color-primario);
     }
 
     &-blanco {
-        color: #E4EBF0;
-        text-shadow: 1.5px 0px 1px rgba($color: black, $alpha: 0.5),
-            0px 1.5px 1px rgba($color: black, $alpha: 0.5),
-            -1.5px 0px 1px rgba($color: black, $alpha: 0.5),
-            0px -1.5px 1px rgba($color: black, $alpha: 0.5);
+        color: var(--color-fondo);
+        text-shadow: 1.5px 0px 1px rgba($color: var(--color-negro), $alpha: 0.5),
+            0px 1.5px 1px rgba($color: var(--color-negro), $alpha: 0.5),
+            -1.5px 0px 1px rgba($color: var(--color-negro), $alpha: 0.5),
+            0px -1.5px 1px rgba($color: var(--color-negro), $alpha: 0.5);
     }
 }
 
@@ -106,7 +106,7 @@
 
 .navbar {
     width: 100%;
-    background-color: #4180AB !important;
+    background-color: var(--color-primario) !important;
     font-size: 24px;
     text-transform: uppercase;
     font-weight: bold;
@@ -120,7 +120,7 @@
     }
 
     &-usuario {
-        background-color: white;
+        background-color: var(--color-blanco);
         border-radius: 10px;
         padding: 0;
         margin: 0;
@@ -129,12 +129,12 @@
 
 /* Estilos para enlaces activos e inactivos en la barra de navegación */
 .nav-link {
-    color: black;
+    color: var(--color-negro);
     /* Color por defecto */
 }
 
 /* Estilo para el enlace activo */
 .nav-link.active {
-    color: white;
+    color: var(--color-blanco);
     /* Color cuando el enlace está activo */
 }

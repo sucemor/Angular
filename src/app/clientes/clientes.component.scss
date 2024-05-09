@@ -1,33 +1,27 @@
 .tabla-principal {
     text-transform: capitalize;
-    border-radius: 5px !important;
     box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
-
-    &.table {
-        // Asegúrate de que .table está siendo aplicado si es necesario
-        border: 1px solid #a7a7a7 !important;
-    }
-
-    thead tr {
-        border-radius: 50% !important;
-    }
+    // BORDE REDONDEADO
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: hidden; // Sin el no funciona el redondeo
 
     thead tr td {
         font-size: 1.5rem;
         font-weight: bold;
-        background-color: #8AB3CF;
+        background-color: var(--color-secundario);
     }
 
     tbody tr:nth-child(even) td {
         // Aplica estilos a cada fila dentro de tbody
-        background-color: #BDD1DE;
+        background-color: var(--color-terciario);
     }
 
     tbody tr:hover td {
         // Aplica estilos a cada fila dentro de tbody
         cursor: pointer;
-        background-color: #4180AB;
-        color: white;
+        background-color: var(--color-primario);
+        color: var(--color-blanco);
     }
 }
 
@@ -44,66 +38,86 @@
     font-size: 1.3rem;
     outline: none;
     border: none;
-    background-color: #8AB3CF;
-    color: white;
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
     border-radius: 20px;
     padding: 0 0.58rem;
 
     // &-icono{
-    //     color: black;
+    //     color: var(--color-negro;
     // }
 }
 
 // Formulario para añadir un usuario
 .formulario {
     border-radius: 20px;
-    background-color: white;
-    box-shadow: 1px 1px 4px rgba($color: black, $alpha: 0.6);
-    padding: 2rem 2rem;
+    background-color: var(--color-blanco);
+    box-shadow: 1px 1px 4px rgba($color: var(--color-negro), $alpha: 0.6);
+    padding: 2.375rem 2.625rem;
     margin: 2rem 0;
-    // &-izquierda{
-    //     width: 40%;
-    // }
+    width: fit-content;
 
-    // &-derecha{
-    //     width: 40%;
-    // }
-    &-seleccionar{
-        background-color: red;
+    // Tamaño de cada columna
+    &-grupo{
+        width: 21.875rem;
     }
 
+    // Estilos de los input
     & .form-floating {
-        margin: 0;
+        // margin: 0;
         padding: 0;
-        height: fit-content;
+        // height: fit-content;
 
         & .form-control {
-            background-color: rgba($color: #BDD1DE, $alpha: 0.7);
+            background-color: rgba($color: var(--color-terciario), $alpha: 0.7);
             border-radius: 20px;
-            height: fit-content;
         }
 
-        & .observaciones {
-            background-color: rgba($color: #BDD1DE, $alpha: 0.7);
-            min-height: 10rem;
+        // Tamaño de los telefonos
+        & .form-control.telefonos{
+            width: 7rem;
+        }
+
+        & .form-control.codigoPostal{
+            width: 7.5rem;
+        }
+
+        & .form-select.seleccionables{
+            background-color: rgba($color: var(--color-terciario), $alpha: 0.7);
+            border-radius: 20px;
+        }
+
+        & textarea.observaciones {
+            background-color: rgba($color: var(--color-terciario), $alpha: 0.7);
         }
     }
 
+
+    // BOTONONES
     &-boton-cerrar {
+        border-radius: 20px;
         background-color: #F25757;
-        color: white;
+        color: var(--color-blanco);
         height: fit-content;
         text-transform: capitalize;
     }
 
     &-boton-guardar {
+        border-radius: 20px;
         background-color: #44C08A;
-        color: white;
+        color: var(--color-blanco);
         text-transform: capitalize;
 
         &-icono {
-            color: black;
+            color: var(--color-negro);
             margin-right: 0.5rem;
         }
     }
 }
+
+@media (max-width: 768px) {
+    .formulario {
+      // Espacio entre medias de las dos secciones de formulario
+      gap: 3vw;
+    }
+  }

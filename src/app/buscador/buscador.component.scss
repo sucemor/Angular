@@ -1,10 +1,10 @@
 .buscador{
     // Tendrá el tamaño del contenido de dentro
-    background-color: white;
+    background-color: var(--color-blanco);
     padding: 0;
     width: fit-content;
     height: fit-content;
-    border: 1px solid black;
+    border: 1px solid var(--color-negro);
     border-radius: 20px;
     cursor: pointer;
 
@@ -25,8 +25,8 @@
         &:hover{
             border-top-right-radius: 50%;
             border-bottom-right-radius: 50%;
-            background-color: #4180AB;
-            color: white;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
         }
     }
 }
@@ -36,8 +36,8 @@
     text-transform: capitalize;
     cursor: pointer;
     outline: none;
-    background-color: #8AB3CF;
-    color: white;
+    background-color: var(--color-secundario);
+    color: var(--color-blanco);
     border-radius: 20px;
     padding: 0 0.2rem;
 }

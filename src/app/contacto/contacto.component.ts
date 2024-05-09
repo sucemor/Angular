@@ -3,11 +3,12 @@ import { BuscadorContactosComponent } from '../buscador-contactos/buscador-conta
 import { LoginComponent } from '../login/login.component';
 import { ContactosCompartidoService } from '../contactos-compartido.service';
 import contactos from '../../assets/contactos.json';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-contacto',
   standalone: true,
-  imports: [BuscadorContactosComponent, LoginComponent],
+  imports: [BuscadorContactosComponent, LoginComponent, MatTooltipModule],
   templateUrl: './contacto.component.html',
   styleUrl: './contacto.component.scss'
 })

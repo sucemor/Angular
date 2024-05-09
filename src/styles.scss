@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --color-primario: #4180AB; // Valor inicial
+    --color-secundario: #8AB3CF; // Valor inicial
+    --color-terciario: #BDD1DE; // Valor inicial
+    --color-fondo: #E4EBF0; // Valor inicial
+    --color-negro: #000; // Valor inicial
+    --color-blanco: #FFF; // Valor inicial
+}
+
+// Si el usuario tiene por defecto el modo oscuro activado en el navegador
+@media (prefers-color-scheme: dark) {
+    :root {
+      --color-fondo: #000 !important;
+      --color-blanco: #fff !important;
+    }
+  }
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

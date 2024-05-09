@@ -1,44 +1,59 @@
 <div class="container-fluid m-0 p-0 general">
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md bg-body-tertiary py-3">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="p-2 p-lg-0 py-lg-3 container">
             <a href="#" class="navbar-brand">
                 <img src="../../assets/imagenes/logo_aumentur.svg" alt="Logo" class="navbar-logo" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
-                    <div class="d-flex flex-row align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="clientes" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="contactos" routerLinkActive="active" ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Contactos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" >Ajustes</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle navbar-usuario"  role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                @if (user !== "") {
-                                {{ user }}
-                                }@else if (user == null) { Iniciar sesión }@else{ Iniciar sesión }
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item"  (click)="salir()">Cerrar sesion</a>
-                                </li>
-                            </ul>
-                        </li>
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-12 col-lg-auto ms-3 m-lg-0 mt-4 mb-2 my-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="clientes" routerLinkActive="active"
+                                    ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Clientes</a>
+                            </li>
+                        </div>
+                        <div class="col-12 col-lg-auto ms-3 m-lg-0 my-2 my-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="contactos" routerLinkActive="active"
+                                    ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Contactos</a>
+                            </li>
+                        </div>
+                        <div class="col-12 col-lg-auto ms-3 m-lg-0 my-2 my-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                    <i [ngClass]="luna ? 'bi bi-moon-stars' : 'bi bi-sun'" (click)="modoNoche()"></i>
+                                </a>
+                            </li>
+                        </div>
+                        <div class="col-12 col-lg-auto ms-3 m-lg-0 my-2 my-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle navbar-usuario" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    @if (user !== "") {
+                                    {{ user }}
+                                    }@else if (user == null) { Iniciar sesión }@else{ Iniciar sesión }
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" (click)="salir()">Cerrar sesion</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
                     </div>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <button (click)="cambiarColores()">Cambiar Colores</button>
+
 
     <!-- Modal del login -->
     @if (user === "") {
