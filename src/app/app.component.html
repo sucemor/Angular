@@ -1,9 +1,10 @@
 <div class="container-fluid m-0 p-0 general">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="p-2 p-lg-0 py-lg-3 container">
+        <!-- p-2 p-lg-0 py-lg-3 -->
+        <div class="container">
             <a href="#" class="navbar-brand">
-                <img src="../../assets/imagenes/logo_aumentur.svg" alt="Logo" class="navbar-logo" />
+                <img src="../../assets/imagenes/logo_aumentur.svg" alt="Logo" class="navbar-brand-logo" />
             </a>
             <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,19 +14,18 @@
                 <ul class="navbar-nav ms-auto">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-12 col-lg-auto ms-3 m-lg-0 mt-4 mb-2 my-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" routerLink="clientes" routerLinkActive="active"
-                                    ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Clientes</a>
+                            <li class="nav-item navbar-enlaces">
+                                <a class="nav-link" routerLink="/clientes" routerLinkActive="active" [routerLinkActiveOptions]="{exact: false}">Clientes</a>
                             </li>
                         </div>
                         <div class="col-12 col-lg-auto ms-3 m-lg-0 my-2 my-lg-0">
-                            <li class="nav-item">
+                            <li class="nav-item navbar-enlaces">
                                 <a class="nav-link" routerLink="contactos" routerLinkActive="active"
                                     ariaCurrentWhenActive="page" [routerLinkActiveOptions]="{exact: true}">Contactos</a>
                             </li>
                         </div>
                         <div class="col-12 col-lg-auto ms-3 m-lg-0 my-2 my-lg-0">
-                            <li class="nav-item">
+                            <li class="nav-item navbar-enlaces">
                                 <a class="nav-link">
                                     <i [ngClass]="luna ? 'bi bi-moon-stars' : 'bi bi-sun'" (click)="modoNoche()"></i>
                                 </a>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-12 col-lg-auto ms-3 m-lg-0 my-2 my-lg-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle navbar-usuario" role="button"
+                                <a class="nav-link dropdown-toggle navbar-usuario text-capitalize" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     @if (user !== "") {
                                     {{ user }}
@@ -52,9 +52,6 @@
         </div>
     </nav>
 
-    <button (click)="cambiarColores()">Cambiar Colores</button>
-
-
     <!-- Modal del login -->
     @if (user === "") {
     <app-login></app-login>
@@ -62,11 +59,11 @@
     <app-login></app-login>
     }
 
-    <div class="container-fluid">
+    <div class="container">
         <router-outlet></router-outlet>
     </div>
 
-    <footer class="footer py-2">
+    <footer class="footer w-100">
         <div class="text-center">
             <p class="footer-contenido">
                 Aumentur CRM - Desarrollado por Samuel Uceda Moreno para Aumentur
@@ -77,5 +74,4 @@
             </p>
         </div>
     </footer>
-
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClientesCompartidoService } from '../clientes-compartido.service';
+import { ClientesCompartidoService } from '../servicios/compartido.service';
 
 @Component({
   selector: 'app-detalles-cliente',
@@ -19,10 +19,10 @@ export class DetallesClienteComponent {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'));
+      // console.log(params.get('id'));
       const id = Number(params.get('id'));
-      this.cliente = this.clienteService.filtrarPorId(id);
-      console.log(this.cliente);
+      this.cliente = this.clienteService.filtrarClientesPorId(id);
+      // console.log(this.cliente);
     });
   }
 }

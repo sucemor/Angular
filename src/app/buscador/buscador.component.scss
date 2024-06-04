@@ -1,6 +1,7 @@
 .buscador{
     // Tendrá el tamaño del contenido de dentro
     background-color: var(--color-blanco);
+    font-size: 1.25rem; // COMPROBAR
     padding: 0;
     width: fit-content;
     height: fit-content;
@@ -32,12 +33,12 @@
 }
 
 .opciones{
-    font-size: 1.3rem;
+    font-size: 1.25rem; // COMPROBAR
     text-transform: capitalize;
     cursor: pointer;
     outline: none;
     background-color: var(--color-secundario);
     color: var(--color-blanco);
     border-radius: 20px;
-    padding: 0 0.2rem;
+    padding: 0 0.4rem;
 }
