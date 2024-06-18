@@ -1,44 +1,61 @@
-.buscador{
-    // Tendrá el tamaño del contenido de dentro
+.buscador {
+//     // Tendrá el tamaño del contenido de dentro
     background-color: var(--color-blanco);
-    font-size: 1.25rem; // COMPROBAR
-    padding: 0;
-    width: fit-content;
-    height: fit-content;
-    border: 1px solid var(--color-negro);
+    
+    font-size: 20px;
+    border: none;
+    outline: none;
     border-radius: 20px;
-    cursor: pointer;
+    padding: 0;
 
-    &-input{
+    &-input {
+        cursor: pointer;
+        height: inherit;
+        border-radius: 20px;
         // Le quito las lineas
         border: none;
         outline: none;
-        // Le doy más tamaño
-        margin-left: 0.8rem;
-        padding-right: 5rem;
     }
 
-    &-icono{
-        margin: 0;
-        padding: 0.2rem 0.4rem;
-        padding-right: 0.3rem;
+    &-icono {
         cursor: pointer;
-        &:hover{
-            border-top-right-radius: 50%;
-            border-bottom-right-radius: 50%;
-            background-color: var(--color-primario);
-            color: var(--color-blanco);
+        transition: all 0.2s;
+
+        &:hover {
+            color: var(--color-primario);
+            transform: scale(1.1);
         }
     }
 }
 
-.opciones{
-    font-size: 1.25rem; // COMPROBAR
+.opciones {
+    font-size: 20px;
     text-transform: capitalize;
     cursor: pointer;
     outline: none;
     background-color: var(--color-secundario);
     color: var(--color-blanco);
     border-radius: 20px;
-    padding: 0 0.4rem;
+}
+
+//Tamaños de letras
+@media (min-width: 768px) and (max-width: 995px) {
+    .buscador {
+        font-size: 18px;
+    }
+    
+    .opciones {
+        font-size: 18px;
+        padding: 0 0.4rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .buscador {
+        font-size: 16px;
+    }
+
+    .opciones {
+        font-size: 16px;
+    }
 }

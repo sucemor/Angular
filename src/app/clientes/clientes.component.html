@@ -1,21 +1,16 @@
-<!--
-<div>
-  <button (click)="resultado = generarNumeroAleatorio()" class="btn btn-info text-white fs-5 mt-2">¡Presioname!</button>
-  <p>¿Voy al cumpleaños? 
-    @if (resultado === "No"){
-      <span class="text-danger fw-bold">{{resultado}}</span>
-    }
-    @else if (resultado === "Sí"){
-      <span class="text-success fw-bold">{{resultado}}</span>
-    }
-    @else{
-      <span class="text-warning fw-bold">{{resultado}}</span>
-    }
-  </p>
-</div>
--->
-
 <div class="m-0 p-0 d-flex flex-column justify-content-center align-items-center">
+  @if (conexion === true) {
+  <p class="errores m-4 fs-5">Error al conectar con el servidor</p>
+  }
+
+  @if (formularioError === true) {
+  <p class="errores m-4 fs-5" [innerHTML]="mensajeError"></p>
+  }
+
+  @if (formularioAcierto === true) {
+  <p class="exito m-4 fs-5">Cliente creado</p>
+  }
+
   @if (estadoFormulario) {
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="formulario row">
     <!-- Primer grupo -->
@@ -24,7 +19,10 @@
         <div class="col-12 form-floating">
           <input type="text" class="form-control" id="nombre" placeholder="nombre" formControlName="nombre" />
           <label for="nombre">Nombre</label>
-          <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid" class="text-danger">
+          <div *ngIf="
+              formulario.get('nombre')?.touched &&
+              formulario.get('nombre')?.invalid
+            " class="text-danger">
             <small>El nombre es obligatorio.</small>
           </div>
         </div>
@@ -32,7 +30,10 @@
         <div class="col-12 form-floating">
           <input type="text" class="form-control" id="email" placeholder="Correo" formControlName="email" />
           <label for="email">Correo</label>
-          <div *ngIf="formulario.get('email')?.touched && formulario.get('email')?.invalid" class="text-danger">
+          <div *ngIf="
+              formulario.get('email')?.touched &&
+              formulario.get('email')?.invalid
+            " class="text-danger">
             <small>El correo no es válido.</small>
           </div>
         </div>
@@ -45,8 +46,10 @@
                   placeholder="Introduzca el primer teléfono" aria-label="Introduzca el primer teléfono"
                   formControlName="telefono1" />
                 <label for="telefono1">Teléfono</label>
-                <div *ngIf="formulario.get('telefono1')?.touched && formulario.get('telefono1')?.invalid"
-                  class="text-danger">
+                <div *ngIf="
+                    formulario.get('telefono1')?.touched &&
+                    formulario.get('telefono1')?.invalid
+                  " class="text-danger">
                   <small>El teléfono no es válido.</small>
                 </div>
               </div>
@@ -61,7 +64,9 @@
                     <option value="ayuntamiento">Ayuntamiento</option>
                     <option value="diputacion">Diputación</option>
                     <option value="mancomunidad">Mancomunidad</option>
-                    <option value="grupo_desarrollo">Grupo de desarrollo</option>
+                    <option value="grupo_desarrollo">
+                      Grupo de desarrollo
+                    </option>
                   </optgroup>
                 </select>
                 <label for="tipo_empresa">Elija el tipo de empresa</label>
@@ -77,8 +82,10 @@
                 <input type="text" class="form-control telefonos" id="telefono2" placeholder="Ejemplo: 987654321"
                   formControlName="telefono2" />
                 <label for="telefono2">Teléfono</label>
-                <div *ngIf="formulario.get('telefono2')?.touched && formulario.get('telefono2')?.invalid"
-                  class="text-danger">
+                <div *ngIf="
+                    formulario.get('telefono2')?.touched &&
+                    formulario.get('telefono2')?.invalid
+                  " class="text-danger">
                   <small>El teléfono no es válido.</small>
                 </div>
               </div>
@@ -88,7 +95,9 @@
                 <select class="form-select seleccionables" id="encargado" aria-label="Floating label select example"
                   formControlName="encargado">
                   <ng-container *ngFor="let usuario of ARusuarios; trackBy: trackByIndex">
-                    <option [value]="usuario.id" class="text-capitalize">{{ usuario.name }}</option>
+                    <option [value]="usuario.id" class="text-capitalize">
+                      {{ usuario.name }}
+                    </option>
                   </ng-container>
                 </select>
                 <label for="encargado">Selecciona una persona a cargo</label>
@@ -105,11 +114,21 @@
           <div class="form-floating">
             <select class="form-select seleccionables" id="estado" aria-label="Elija el tipo de empresa"
               formControlName="estado">
-              <option value="contactar" class="text-capitalize">Contactar</option>
-              <option value="posible" class="text-capitalize">Posible cliente</option>
-              <option value="acuerdo" class="text-capitalize bg-info text-white">Acuerdo</option>
-              <option value="terminado" class="text-capitalize bg-success text-white">Terminado</option>
-              <option value="cancelado" class="text-capitalize bg-danger text-white">cancelado</option>
+              <option value="contactar" class="text-capitalize">
+                Contactar
+              </option>
+              <option value="posible" class="text-capitalize">
+                Posible cliente
+              </option>
+              <option value="acuerdo" class="text-capitalize bg-info text-white">
+                Acuerdo
+              </option>
+              <option value="terminado" class="text-capitalize bg-success text-white">
+                Terminado
+              </option>
+              <option value="cancelado" class="text-capitalize bg-danger text-white">
+                cancelado
+              </option>
             </select>
             <label for="estado">Elija el estado con el cliente</label>
           </div>
@@ -118,7 +137,7 @@
     </div>
 
     <!-- SEGUNDO GRUPO -->
-    <div class="col-6 ms-5 formulario-grupo">
+    <div class="col-12 col-lg-6  mt-4 mt-lg-0 ms-lg-5 formulario-grupo">
       <div class="row g-4">
         <div class="col-12 form-floating">
           <input type="text" class="form-control" id="direccion" placeholder="Escriba la direccion"
@@ -153,8 +172,10 @@
                 <input type="text" class="form-control codigoPostal" id="codigo_postal"
                   placeholder="Introduzca el número de calle" formControlName="codigoPostal" />
                 <label for="codigo_postal">Código Postal</label>
-                <div *ngIf="formulario.get('codigoPostal')?.touched && formulario.get('codigoPostal')?.invalid"
-                  class="text-danger">
+                <div *ngIf="
+                    formulario.get('codigoPostal')?.touched &&
+                    formulario.get('codigoPostal')?.invalid
+                  " class="text-danger">
                   <small>El código postal no es válido.</small>
                 </div>
               </div>
@@ -174,7 +195,8 @@
           <div class="row justify-content-between">
             <div class="col-auto px-0">
               <button class="w-100 btn btn-primary text-capitalize formulario-boton-cerrar" mat-raised-button
-                aria-label="Cerrar el formulario" matTooltip="¿Quieres cerrar el formulario?">
+                aria-label="Cerrar el formulario" matTooltip="¿Quieres cerrar el formulario?"
+                (click)="cerrarFormulario($event)">
                 Cerrar
               </button>
             </div>
@@ -193,40 +215,68 @@
 
   }
 
-  <div class="container-fluid m-0 p-0 mt-3 d-flex flex-row justify-content-between align-items-start">
-    <app-buscador></app-buscador>
+  <div class="container-fluid my-4">
+    <div class="row align-items-center">
+      <app-buscador class="col-12 col-xl-7 mb-3 mb-md-0"></app-buscador>
 
-    <p class="texto text-center">{{ tamano }} Clientes encontrados</p>
+      <p class="order-2 order-md-1 col-7 col-md-9 col-xl-3 texto text-center m-0 p-0">{{ tamano }} Clientes encontrados</p>
 
-    <button class="boton" (click)="cambiarEstadoFormulario()">
-      <i class="bi bi-plus-circle text-dark me-2 boton-icono"></i>añadir cliente
-    </button>
+      <button class="order-1  order-md-2 col-5 col-md-3 col-xl-2 boton text-center" (click)="cambiarEstadoFormulario()">
+        <i class="bi bi-plus-circle text-dark me-2 boton-icono"></i>añadir cliente
+      </button>
+    </div>
   </div>
 
+  @if (todoCargadoClientes===false) {
+  <div class="spinner-border m-5" role="status">
+    <span class="visually-hidden text-info">Cargando clientes...Espere, por favor</span>
+  </div>
+  }@else{
+  @defer (when todoCargadoClientes===true){
   <div class="container-fluid m-0 p-0">
     <table class="tabla-principal table border-radius table-responsive text-center">
       <thead>
         <tr>
           <td>Nombre</td>
-          <td>Ciudad</td>
-          <td>Dirección</td>
           <td>Correo</td>
           <td>Estado</td>
-          <td>Creación</td>
+          <td>Tipo de cliente</td>
+          <td>Fecha de creación</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
         @for (cliente of ARclientes; track $index) {
-        <tr (click)="verDetalles(cliente.id)">
-          <td>{{ cliente.nombre }}</td>
-          <td>{{ cliente.ciudad }}</td>
-          <td>{{ cliente.direccion }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.estado }}</td>
-          <td>{{ cliente.fecha_creacion }}</td>
+        <tr>
+          <td (click)="verDetalles(cliente.id)">{{ cliente.nombre }}</td>
+          <td (click)="verDetalles(cliente.id)">{{ cliente.email }}</td>
+          @if (cliente.estado === "acuerdo") {
+          <td (click)="verDetalles(cliente.id)" class="text-capitalize estado-desarrollo">
+            {{ cliente.estado }}
+          </td>
+          } @else if (cliente.estado === "terminado") {
+          <td (click)="verDetalles(cliente.id)" class="text-capitalize estado-terminado">
+            {{ cliente.estado }}
+          </td>
+          }@else if (cliente.estado === "cancelado") {
+          <td (click)="verDetalles(cliente.id)" class="text-capitalize estado-cancelado">
+            {{ cliente.estado }}
+          </td>
+          } @else {
+          <td (click)="verDetalles(cliente.id)" class="text-capitalize">{{ cliente.estado }}</td>
+          }
+          <td (click)="verDetalles(cliente.id)"  class="text-capitalize">{{ cliente.tipo_empresa }}</td>
+          <td>{{ cliente.created_at }}</td>
+          <td class="editar" (click)="editar()">
+            <i class="bi bi-pencil-square"></i>
+          </td>
         </tr>
         }
       </tbody>
     </table>
   </div>
+  }<!-- Tabla -->
+
+  }
 </div>
+<!-- General -->

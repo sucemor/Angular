@@ -80,12 +80,13 @@
 }
 
 .general {
+    min-height: 100vh;
     background-color: var(--color-fondo);
     // background-color: red;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+    justify-content: space-between;
 }
 
 // FOOTER
@@ -112,7 +113,7 @@
     height: 6vh;
     width: 100%;
     background-color: var(--color-primario) !important;
-    font-size: 1.25rem;
+    font-size: 22px;
     letter-spacing: 3px;
     // text-transform: uppercase;
     font-weight: bold;
@@ -123,11 +124,11 @@
 
     // Contenedor para limitarlo al 80%, aquí se pone el margen y la altura
     div {
-        height: 100%; 
+        height: 100%;
     }
 
     // Este es el enlace de la imagen
-    &-brand{
+    &-brand {
         height: 90%;
 
         // Esta es la imagen en si, debe tener un tamaño para que se muestre
@@ -143,15 +144,15 @@
         margin: 0;
     }
 
-    &-enlaces{
+    &-enlaces {
         transition: all 0.2s;
     }
 
-    &-enlaces:hover{
+    &-enlaces:hover {
         color: var(--color-blanco);
         transform: translateY(-0.3rem);
 
-        i{
+        i {
             color: var(--color-blanco);
         }
     }
@@ -167,4 +168,49 @@
 .nav-link.active {
     color: var(--color-blanco);
     /* Color cuando el enlace está activo */
+}
+
+
+//Tamaños de letras
+@media (min-width: 768px) and (max-width: 995px) {
+    // NAVBAR
+    .navbar {
+        height: fit-content;
+        font-size: 18px;
+
+        // Este es el enlace de la imagen
+        &-brand {
+            // Esta es la imagen en si, debe tener un tamaño para que se muestre
+            &-logo {
+                margin: 0 !important;
+                padding: 0 !important;
+                height: 60px;
+                width: 60px;
+            }
+        }
+    }
+
+    .footer {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    // NAVBAR
+    .navbar {
+        height: fit-content;
+        font-size: 16px;
+        // Este es el enlace de la imagen
+        &-brand {
+            // Esta es la imagen en si, debe tener un tamaño para que se muestre
+            &-logo {
+                height: 40px;
+                width: 40px;
+            }
+        }
+    }
+
+    .footer {
+        font-size: 15px;
+    }
 }

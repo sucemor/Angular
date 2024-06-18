@@ -1,63 +1,132 @@
-<div class="modal fade show" data-bs-backdrop="static" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true" role="dialog" style="display: block;">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Identificación</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form [formGroup]="formularioLogin" (ngSubmit)="enviar()">
-              <div class="mb-3">
-                <label for="username" class="form-label">Usuario</label>
-                <input [ngClass]="{'is-invalid':hasErrors('nombre','required')}" 
-                type="text" class="form-control" id="username" formControlName = "nombre">
-                @if(hasErrors('nombre','required')){
-                  <div class="text-danger">El nombre de usuario es necesario</div>
-                }
-                @if(hasErrors('nombre','minlength')){
-                  <div class="text-danger">El nombre de usuario es necesario</div>
-                }
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label" aria-describedby="contraseña" >Contraseña</label>
-                <input [ngClass]="{'is-invalid':hasErrors('contrasena','required') || hasErrors('contrasena','maxlength')}" 
-                type="password" class="form-control" id="password" formControlName = "contrasena">
-                @if(hasErrors('contrasena','required')){
-                  <div class="text-danger">La contraseña es necesaria</div>
-                }
-                
-                @if(hasErrors('contrasena','maxlength')){
-                  <div class="text-danger">La contraseña es demasiado grande, hay máximo de 15 caracteres</div>
-                }
-              </div>
-            
-              <button type="submit" class="btn btn-primary">Adelante</button>
-          </form>
-          </div>                
-      </div>
-  </div>
-</div>
-     
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button> -->
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="false">
+@if (intercambiarFormulario === false && user === null) {
+<div class="modal fade show" id="registro" tabindex="-1" aria-labelledby="registro" aria-modal="true" role="dialog"
+  style="display: block;">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header d-flex flex-row justify-content-between align-items-center">
+        <h1 class="modal-title fs-5" id="registro">Registrarse</h1>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
+
+      <form [formGroup]="formularioRegistro" (ngSubmit)="enviar()">
+        <div class="modal-body">
+          @if (conexion === true) {
+          <p class="errores m-4 fs-5">Error al conectar con el servidor</p>
+          }
+
+          @if (formularioError === true) {
+          <p class="errores m-4 fs-5" [innerHTML]="mensajeError"></p>
+          }
+
+          @if (formularioAcierto === true) {
+          <p class="exito m-4 fs-5">Usuario creado</p>
+          }
+
+          <div>
+            <label for="name" class="form-label">Nombre</label>
+            <input class="form-control" id="name" placeholder="Ingrese el nombre" formControlName="name">
+            <div *ngIf="
+              formularioRegistro.get('name')?.touched &&
+              formularioRegistro.get('name')?.invalid
+            " class="text-danger">
+              <small>El nombre es necesario.</small>
+            </div>
+          </div>
+
+          <div class="my-2">
+            <label for="email" class="form-label">Correo</label>
+            <input class="form-control" id="email" placeholder="Ingrese el correo" formControlName="email">
+            <div *ngIf="
+              formularioRegistro.get('email')?.touched &&
+              formularioRegistro.get('email')?.invalid
+            " class="text-danger">
+              <small>El email no es válido o es requerido.</small>
+            </div>
+          </div>
+
+          <div class="my-2">
+            <label for="password" class="form-label">Contraseña</label>
+            <input class="form-control" id="password" placeholder="Ingrese la contraseña" formControlName="password">
+            <div *ngIf="
+              formularioRegistro.get('password')?.touched &&
+              formularioRegistro.get('password')?.invalid
+            " class="text-danger">
+              <small>La contraseña es necesaria y mínimo son 8 caracteres.</small>
+            </div>
+          </div>
+
+          <div class="my-2">
+            <label for="password_confirmation" class="form-label">Repita la contraseña</label>
+
+            <input class="form-control" id="password_confirmation" placeholder="Repita la contraseña"
+              formControlName="password_confirmation">
+            <div *ngIf="
+              formularioRegistro.get('password_confirmation')?.touched &&
+              formularioRegistro.get('password_confirmation')?.invalid
+            " class="text-danger">
+              <small>La contraseña de confirmación es válida y mínimo son 8 caracteres.</small>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p>¿Ya tienes una cuenta?
+            <a class="enlace" (click)="cerrarFormulario($event)">Inicia sesión</a>
+          </p>
+          <button type="submit" class="btn btn-primary formulario-boton-guardar">Registrarse</button>
+        </div>
+      </form>
     </div>
   </div>
-</div> -->
+</div>
+}
+@if (intercambiarFormulario === true && user === null) {
+  <div class="modal fade show" id="iniciar" tabindex="-1" aria-labelledby="iniciar" aria-modal="true" role="dialog"
+  style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex flex-row justify-content-between align-items-center">
+        <h1 class="modal-title fs-5" id="registro">Iniciar sesión</h1>
+      </div>
+
+      <form [formGroup]="formularioLogin" (ngSubmit)="loguear()">
+        <div class="modal-body">
+          @if (conexion === true) {
+          <p class="errores m-4 fs-5">Error al conectar con el servidor</p>
+          }
+
+          @if (formularioAcierto === true) {
+            <p class="exito m-4 fs-5">Usuario creado</p>
+            }
+
+          <div>
+            <label for="name" class="form-label">Nombre</label>
+            <input class="form-control" id="name" placeholder="Ingrese el nombre" formControlName="name">
+            <div *ngIf="
+              formularioLogin.get('name')?.touched &&
+              formularioLogin.get('name')?.invalid
+            " class="text-danger">
+              <small>El nombre es necesario.</small>
+            </div>
+          </div>
+
+          <div class="my-2">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" placeholder="Ingrese la contraseña" formControlName="password">
+            <div *ngIf="
+              formularioLogin.get('password')?.touched &&
+              formularioLogin.get('password')?.invalid
+            " class="text-danger">
+              <small>La contraseña es necesaria y mínimo son 8 caracteres.</small>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p>¿No tienes usuario?
+            <a class="enlace" (click)="cerrarFormulario($event)">¡Regístrate!</a>
+          </p>
+          <button type="submit" class="btn btn-primary formulario-boton-guardar">Adelante</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+}

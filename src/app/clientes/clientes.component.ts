@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BuscadorComponent } from '../buscador/buscador.component';
-import { ClientesCompartidoService } from '../servicios/compartido.service';
+import { CompartidoService } from '../servicios/compartido.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsuarioService } from '../usuario.service';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,12 +10,26 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [BuscadorComponent, HttpClientModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    BuscadorComponent,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+  ],
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.scss']
+  styleUrls: ['./clientes.component.scss'],
 })
 export class ClientesComponent implements OnInit {
-  // Variables
+  // Declaración de variables--------------------------------------------------------------
+
+  // Control de errores
+  mensajeError = "";
+  formularioAcierto = false;
+  formularioError = false;
+  conexion = false;
+
+  //Otros
+  todoCargadoClientes = false;
   ARclientes: any[] = []; // Declare una variable para almacenar los datos JSON
   ARusuarios: any[] = []; // Declare una variable para almacenar los datos JSON
   tamano: any = 1;
@@ -25,19 +38,31 @@ export class ClientesComponent implements OnInit {
   formulario: FormGroup;
   totalAngularPackages: any[] = [];
 
-
-  // Constructor
+  // Constructor--------------------------------------------------------------------------
   constructor(
-    private clientesCompartido: ClientesCompartidoService,
+    private clientesCompartido: CompartidoService,
     private router: Router,
-    private usuarioCompartido: UsuarioService,
     private fb: FormBuilder
   ) {
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       email: ['', Validators.email],
-      telefono1: ['', [Validators.minLength(9), Validators.pattern('^[0-9]*$'), Validators.maxLength(9)]],
-      telefono2: ['', [Validators.minLength(9), Validators.pattern('^[0-9]*$'), Validators.maxLength(9)]],
+      telefono1: [
+        '',
+        [
+          Validators.minLength(9),
+          Validators.pattern('^[0-9]*$'),
+          Validators.maxLength(9),
+        ],
+      ],
+      telefono2: [
+        '',
+        [
+          Validators.minLength(9),
+          Validators.pattern('^[0-9]*$'),
+          Validators.maxLength(9),
+        ],
+      ],
       tipo_empresa: [''],
       encargado: [''],
       web: [''],
@@ -45,49 +70,111 @@ export class ClientesComponent implements OnInit {
       ciudad: [''],
       provincia: [''],
       pais: [''],
-      codigoPostal: ['', [Validators.minLength(5), Validators.pattern('^[0-9]*$'), Validators.maxLength(5)]],
+      codigoPostal: [
+        '',
+        [
+          Validators.minLength(5),
+          Validators.pattern('^[0-9]*$'),
+          Validators.maxLength(5),
+        ],
+      ],
       observaciones: [''],
-      estado: ['contactar', Validators.required]
+      estado: ['contactar', Validators.required],
     });
   }
 
   // Función de arranque
   ngOnInit(): void {
+    // Le da la información al buscador de quién lo esta usando
+    this.clientesCompartido.setParentName('clientes');
+    //--------------------------------------------------------
     // Subscripción a un observable para datos compartidos
-    this.clientesCompartido.datosClientes$.subscribe(datos => {
+    this.clientesCompartido.datosClientes$.subscribe((datos) => {
       this.ARclientes = datos;
-      this.tamano = this.ARclientes.length;
+      if (this.ARclientes[0] === false) {
+        this.conexion = true;
+      } else {
+        this.conexion = false;
+        this.tamano = this.ARclientes.length;
+      }
+
+      // Ha cargado los datos de la tabla
+      this.todoCargadoClientes = true;
     });
 
-    this.clientesCompartido.datosUsuarios$.subscribe(datos => {
+    this.clientesCompartido.datosUsuarios$.subscribe((datos) => {
       this.ARusuarios = datos;
-      // console.log(this.ARusuarios);
-    });
-
-    this.usuarioCompartido.user$.subscribe(user => {
-      this.user = user;
     });
   }
 
   // Código
+  /**
+   * Función encargada de mostrar u ocultar el formulario
+   */
   cambiarEstadoFormulario(): void {
     this.estadoFormulario = !this.estadoFormulario;
   }
 
   /**
- * Función encargada de enviar un post a la base de dato.
- * Es decir, crea un cliente con los datos del formulario
- */
+   * Función encargada de cerrar el formulario sin dar advertencia
+   * @param event
+   */
+  cerrarFormulario(event: Event): void {
+    event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    this.cambiarEstadoFormulario(); // Llamar a la función que cambia el estado del formulario
+  }
+
+  /**
+   * Función encargada de enviar un post a la base de dato.
+   * Es decir, crea un cliente con los datos del formulario
+   */
   onSubmit() {
+    // Reseteo las varaibles de error, por si el usuario vuelve a cometer otro error de manera seguida
+    this.formularioAcierto = false;
+    this.formularioError = false;
+    this.mensajeError = "";
+
     // Si esta validado, hago el POST
     if (this.formulario.valid) {
       // Si el POST sale bien, recargo el array.
-      if(this.clientesCompartido.enviarClientes(this.formulario.value)){
-        this.clientesCompartido.datosClientes$.subscribe(datos => {
-          this.ARclientes = datos;
-          this.tamano = this.ARclientes.length;
-        });
-      }
+      this.clientesCompartido.enviarClientes(this.formulario.value).subscribe(resultado => {
+        if (resultado.errors) {
+          Object.keys(resultado.errors).forEach((key: string) => {
+            switch (key) {
+              case 'nombre':
+                this.mensajeError += "El nombre ya está en uso";
+                if (key.length > 1)
+                  this.mensajeError += "<br>"
+                break;
+              case 'email':
+                this.mensajeError += "El email ya está en uso";
+                break;
+
+              default:
+                this.mensajeError = "Error al conectar con servidor, no se puede enviar datos desde el formulario, disculpe las molestias";
+                break;
+            }
+          });
+          // Mensaje de acierto se oculta
+          this.formularioAcierto = false;
+          // Mensaje de error se muestra
+          this.formularioError = true;
+        } else {
+          // Mensaje de acierto se muestra
+          this.formularioAcierto = true;
+          // Mensaje de error se oculta
+          this.formularioError = false;
+
+
+          // Cierro el formulario
+          this.cambiarEstadoFormulario();
+          // Recogo clientes
+          this.clientesCompartido.recogerClientes();
+          this.clientesCompartido.recogerClientes();
+          // Reseteo el formulario
+          this.formulario.reset();
+        }
+      });
     } else {
       this.validateAllFormFields(this.formulario);
     }
@@ -95,11 +182,11 @@ export class ClientesComponent implements OnInit {
 
   /**
    * Marca todos los campos del formulario como tocados para activar los mensajes de error.
-   * 
+   *
    * @param formGroup - El grupo de formularios a validar.
    */
   validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
+    Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
       if (control instanceof FormGroup) {
         this.validateAllFormFields(control);
@@ -111,7 +198,7 @@ export class ClientesComponent implements OnInit {
 
   /**
    * Función de ayuda para la directiva *ngFor de Angular que optimiza la renderización de listas.
-   * 
+   *
    * @param index - El índice del elemento actual en la lista.
    * @param item - El elemento actual en la lista.
    * @returns El índice del elemento.
@@ -120,12 +207,15 @@ export class ClientesComponent implements OnInit {
     return index;
   }
 
-
   /**
    * Función encargada de redireccionar a detalles según el id de un cliente
    * @param id Id del cliente a mostrar
    */
   verDetalles(id: number) {
     this.router.navigate(['/clientes', id]);
+  }
+
+  editar() {
+    alert('Botón de editar');
   }
 }

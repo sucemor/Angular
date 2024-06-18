@@ -1,1 +1,82 @@
-<p>detalles-cliente works!</p>
+<div class="row">
+  <div class="col-12 col-md-12 col-xl-4">
+
+    <div class="cliente my-4">
+      <h4>Nombre</h4>
+      <p>{{cliente.nombre ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Tipo de empresa</h4>
+      <p>{{cliente.tipo_empresa ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Teléfono</h4>
+      <p>{{cliente.telefono1 ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Teléfono 2</h4>
+      <p>{{cliente.telefono2 ?? "Vacío"}}</p>
+    </div>
+
+    
+    <div class="cliente my-4">
+      <h4>Correo</h4>
+      <p>{{cliente.email ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Página web</h4>
+      <p><a href="{{cliente.web}}" target="_blank"> {{cliente.web ?? "Vacío"}}</a></p>
+      <hr class="my-2">
+      <h4>Observaciones</h4>
+      <p>{{cliente.observaciones ?? "Vacío"}}</p>
+    </div>
+
+    <div class="cliente my-4">
+      <h4>Dirección</h4>
+      <p>{{cliente.direccion ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Ciudad</h4>
+      <p>{{cliente.ciudad ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Provincia</h4>
+      <p>{{cliente.provincia ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>País</h4>
+      <p>{{cliente.pais ?? "Vacío"}}</p>
+      <hr class="my-2">
+      <h4>Código postal</h4>
+      <p>{{cliente.codigo_postal ?? "Vacío"}}</p>
+    </div>
+  </div>
+
+  <div class="col-12 col-xl-8">
+    @defer (when todoCargado===true){
+    <div class="estado m-md-4 mt-4 d-flex flex-row align-items-center justify-content-center">
+      <div [ngClass]="aplicarEstado('5')"
+        class="estado-cajon estado-cajon-derecha d-flex flex-row align-items-center justify-content-center">
+        <div [ngClass]="aplicarEstado('4')"
+          class="estado-cajon d-flex flex-row align-items-center justify-content-center">
+          <div [ngClass]="aplicarEstado('3')"
+            class="estado-cajon d-flex flex-row align-items-center justify-content-center">
+            <div [ngClass]="aplicarEstado('2')"
+              class="estado-cajon d-flex flex-row align-items-center justify-content-center">
+              <div [ngClass]="aplicarEstado('1')"
+                class="estado-cajon estado-cajon-izquierda d-flex flex-row align-items-center justify-content-center">
+                <p [ngClass]="aplicarEstado('1')">Contactar con cliente</p>
+                <div [ngClass]="aplicarEstado('1')" class="estado-cajon-circulo"></div>
+              </div>
+
+              <p [ngClass]="aplicarEstado('2')">Intento de contacto</p>
+              <div [ngClass]="aplicarEstado('2')" class="estado-cajon-circulo"></div>
+            </div>
+
+            <p [ngClass]="aplicarEstado('3')">Posible cliente</p>
+            <div [ngClass]="aplicarEstado('3')" class="estado-cajon-circulo"></div>
+          </div>
+
+          <p [ngClass]="aplicarEstado('4')">Acuerdo</p>
+          <div [ngClass]="aplicarEstado('4')" class="estado-cajon-circulo"></div>
+        </div>
+
+        <p [ngClass]="aplicarEstado('5')">Terminado</p>
+      </div>
+    </div>
+    }
+  </div>
+</div>

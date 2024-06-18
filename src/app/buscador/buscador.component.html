@@ -1,14 +1,26 @@
-<div class="d-flex flex-row">
-    <div class="buscador">
-        <input class="buscador-input" type="text" [formControl]="busquedaControl" placeholder="Buscar...">
-        <i class="bi bi-search buscador-icono" (click)="buscarBoton()"></i>
+<div class="row justify-content-between align-items-center">
+  <div class="col-12 col-lg-9">
+    <div class="buscador row align-items-center justify-content-between">
+      <input class="col-11 buscador-input" type="text" [formControl]="busquedaControl" placeholder="Buscar..." />
+      <i class="col-1 bi bi-search buscador-icono" (click)="buscarBoton()"></i>
     </div>
+  </div>
 
-    <select name="miselect" class="opciones ms-3" [(ngModel)]="atributo">
-        @for (valor of listaClientes; track $index) {
-            <option [value]="valor">
-                {{valor}}
-            </option>
-        }
+  <div class="col-12 col-lg-2 mt-3 mt-lg-0">
+    @defer (when todoCargado===true){
+    <select name="miselect" class="opciones" [(ngModel)]="atributo">
+      @for (valor of listaAtributos; track $index) {
+      <option [value]="valor">
+        {{ valor }}
+      </option>
+      }
     </select>
+    }
+  </div>
 </div>
+
+@if (todoCargado===false) {
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Cargando atributos...Espere, por favor</span>
+</div>
+}

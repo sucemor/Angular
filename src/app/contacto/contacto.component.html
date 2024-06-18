@@ -1,72 +1,107 @@
 <div class="container d-flex flex-column justify-content-center align-items-center">
+  @if (conexion === true) {
+  <p class="errores m-4 fs-5">Error al conectar con el servidor</p>
+  }
+
+  @if (formularioError === true) {
+  <p class="errores m-4 fs-5" [innerHTML]="mensajeError"></p>
+  }
+
+  @if (formularioAcierto === true) {
+  <p class="exito m-4 fs-5">Éxito</p>
+  }
+
   @if (estadoFormulario) {
-  <form class="formulario row">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="formulario row">
     <!-- Primer grupo -->
-    <div class="col-6 formulario-grupo">
+    <div class="col-12 col-md-6 formulario-grupo">
       <div class="row g-4">
         <div class="col-12 form-floating">
-          <input type="text" class="form-control" id="Nombre" placeholder="Nombre" />
+          <input type="text" class="form-control" id="Nombre" placeholder="Nombre" formControlName="nombre" />
           <label for="Nombre">Nombre</label>
+          <div *ngIf="
+                    formulario.get('nombre')?.touched &&
+                    formulario.get('nombre')?.invalid
+                  " class="text-danger">
+            <small>El <b>nombre</b> solo admite letras. No utilices números ni caracteres especiales.</small>
+          </div>
         </div>
 
         <div class="col-12 form-floating">
-          <input type="text" class="form-control" id="Apellidos" placeholder="Introduzca el apellidos" />
+          <input type="text" class="form-control" id="Apellidos" formControlName="apellidos"
+            placeholder="Introduzca el apellidos" />
           <label for="Apellidos">Apellidos</label>
-        </div>
-
-        <div class="col-12 row align-items-center justify-content-between mt-4">
-          <div class="col-auto form-floating">
-            <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono1" />
-            <label for="telefono1">Teléfono</label>
-          </div>
-          <div class="col-auto form-check">
-            <input class="form-check-input" type="checkbox" value="" id="telefono1WhatApp" />
-            <label class="form-check-label" for="telefono1WhatApp">
-              ¿Es un Whatsapp?
-            </label>
+          <div *ngIf="
+                    formulario.get('apellidos')?.touched &&
+                    formulario.get('apellidos')?.invalid
+                  " class="text-danger">
+            <small>Los <b>apellidos</b> solo admite letras. No utilices números ni caracteres especiales.</small>
           </div>
         </div>
 
-        <div class="col-12 row align-items-center justify-content-between mt-4">
-          <div class="col-auto form-floating">
-            <input type="text" class="form-control telefonos" id="telefono" placeholder="telefono2" />
-            <label for="telefono2">Teléfono 2</label>
-          </div>
-          <div class="col-auto form-check">
-            <input class="form-check-input" type="checkbox" value="" id="telefono2WhatApp" />
-            <label class="form-check-label" for="telefono2WhatApp">
-              ¿Es un Whatsapp?
-            </label>
+        <div class="col-12">
+          <div class=" row align-items-center justify-content-between">
+            <div class="col-5 form-floating">
+              <input type="text" class="form-control telefonos" formControlName="telefono1" id="telefono1"
+                placeholder="telefono1" />
+              <label for="telefono1">Teléfono</label>
+              <div *ngIf="
+                    formulario.get('telefono1')?.touched &&
+                    formulario.get('telefono1')?.invalid
+                  " class="text-danger">
+                <small>El teléfono 1 no es válido, introduzca nueve dígitos.</small>
+              </div>
+            </div>
+            <div class="col-5 form-floating">
+              <input type="text" class="form-control telefonos" id="telefono2" placeholder="telefono2"
+                formControlName="telefono2" />
+              <label for="telefono2">Teléfono 2</label>
+              <div *ngIf="
+                    formulario.get('telefono2')?.touched &&
+                    formulario.get('telefono2')?.invalid
+                  " class="text-danger">
+                <small>El teléfono 2 no es válido, introduzca nueve dígitos.</small>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="col-12 form-floating">
-          <select class="form-select seleccionables" id="encargado" aria-label="Floating label select example">
-            <option selected>Cliente asignado</option>
-            <option value="1">María</option>
-            <option value="2">Pepe</option>
-            <option value="3">José</option>
+          <select class="form-select seleccionables" id="cliente_id" aria-label="Floating label select example"
+            formControlName="cliente_id">
+            <ng-container *ngFor="let cliente of ARclientes; trackBy: trackByIndex">
+              <option [value]="cliente.id" class="text-capitalize">
+                {{ cliente.nombre }}
+              </option>
+            </ng-container>
           </select>
           <label for="encargado">Selecciona un Cliente (Empresa) que se encargará
           </label>
+          <div *ngIf="
+                    formulario.get('cliente_id')?.touched &&
+                    formulario.get('cliente_id')?.invalid
+                  " class="text-danger">
+            <small>El cliente es necesario seleccionarlo</small>
+          </div>
         </div>
       </div>
     </div>
 
 
     <!-- Grupo de la derecha -->
-    <div class="col-6 ms-5 formulario-grupo">
+    <div class="col-12 col-lg-6  mt-4 mt-lg-0 ms-lg-5 formulario-grupo">
       <div class="row g-4">
         <!-- Correo -->
         <div class="col-12 form-floating">
-          <input type="text" class="form-control" id="Correo" placeholder="Correo" />
+          <input type="text" class="form-control" id="Correo" placeholder="Correo" formControlName="email" />
           <label for="Correo">Correo</label>
         </div>
 
         <!-- Observaciones -->
         <div class="col-12 form-floating">
-          <textarea class="form-control observaciones" placeholder="Deje sus observaciones aquí..."
-            id="floatingTobservacionesextarea2" style="height: 100px"></textarea>
+          <textarea class="form-control observaciones" formControlName="observaciones"
+            placeholder="Deje sus observaciones aquí..." id="floatingTobservacionesextarea2"
+            style="height: 100px"></textarea>
           <label for="observaciones">Observaciones</label>
         </div>
 
@@ -74,16 +109,15 @@
         <div class="col-12">
           <div class="row justify-content-between">
             <div class="col-auto px-0">
-              <button class="w-100 btn btn-primary text-capitalize formulario-boton-cerrar" 
-              mat-raised-button
-              aria-label="Cerrar el formulario"
-              matTooltip="¿Quieres cerrar el formulario?">
+              <button class="w-100 btn btn-primary text-capitalize formulario-boton-cerrar" mat-raised-button
+                aria-label="Cerrar el formulario" matTooltip="¿Quieres cerrar el formulario?"
+                (click)="cerrarFormulario($event)">
                 CERRAR
               </button>
             </div>
             <div class="col-auto px-0">
               <button class="col-auto btn btn-primary text-capitalize formulario-boton-guardar" mat-raised-button
-                matTooltip="Se creará un Cliente ╰(*°▽°*)╯" aria-label="Guardar cliente">
+                matTooltip="Se creará un Cliente" aria-label="Guardar cliente">
                 <i class="bi bi-floppy2-fill formulario-boton-guardar-icono"></i>
                 GUARDAR
               </button>
@@ -95,17 +129,28 @@
   </form>
   }
 
-  <div class="container-fluid d-flex flex-row justify-content-between align-items-start my-4">
-    <app-buscador-contactos></app-buscador-contactos>
+  <div class="container-fluid my-4">
+    <div class="row align-items-center justify-content-between">
+      <app-buscador class="col-12 col-xl-6 mb-3 mb-xl-0"></app-buscador>
 
-    <p class="texto text-center">{{ tamano }} Clientes encontrados</p>
+      <p class="order-2 order-md-1 col-7 col-md-7 col-lg-7 col-xl-3 texto text-center m-0 p-0">{{ tamano }} contactos
+        encontrados</p>
 
-    <button class="boton" (click)="cambiarEstadoFormulario()">
-      <i class="bi bi-plus-circle text-dark me-2"></i>añadir contacto
-    </button>
+      <button class="order-1  order-md-2 col-5 col-md-4 col-lg-4 col-xl-2 boton text-center"
+        (click)="cambiarEstadoFormulario()">
+        <i class="bi bi-plus-circle text-dark me-2 boton-icono"></i>añadir contacto
+      </button>
+    </div>
   </div>
 
   <div class="container-fluid">
+
+    @if (todoCargadoContactos===false) {
+    <div class="spinner-border m-5" role="status">
+      <span class="visually-hidden text-info">Cargando clientes...Espere, por favor</span>
+    </div>
+    }@else{
+    @defer (when todoCargadoContactos===true){
     <table class="tabla-principal table border-radius table-responsive text-center">
       <thead>
         <tr>
@@ -113,22 +158,139 @@
           <td>Apellidos</td>
           <td>Correo</td>
           <td>Teléfono</td>
-          <td>Observaciones</td>
-          <td>Cliente asignado</td>
+          <td>Cliente</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
-        @for (contactos of ARcontactos; track $index) {
-        <tr>
-          <td>{{ contactos.nombre }}</td>
-          <td>{{ contactos.apellidos }}</td>
-          <td>{{ contactos.correo }}</td>
-          <td>{{ contactos.telefono }}</td>
-          <td>{{ contactos.observaciones }}</td>
-          <td>{{ contactos.cliente }}</td>
+        @for (contactos of ARcontactos; track contactos; let index = $index) {
+        @if(index%2 === 0){
+
+        <tr class="par">
+          <td data-label="Nombre" (click)="toggleDetails(index)">{{ contactos.nombre }}</td>
+          <td data-label="Apellidos" (click)="toggleDetails(index)">{{ contactos.apellidos }}</td>
+          <td data-label="Correo" (click)="toggleDetails(index)">{{ contactos.email }}</td>
+          <td data-label="Teléfono" (click)="toggleDetails(index)">{{ contactos.telefono1 }}</td>
+          <td data-label="Cliente" (click)="toggleDetails(index)">{{ clientesNombres[index] }}</td>
+          <td>
+            <i class="bi bi-pencil-square icono" type="button" data-bs-toggle="modal" data-bs-target="#detallesContacto"
+              (click)="openEditModal(contactos)"></i>
+            <i class="bi bi-trash2 icono" (click)="eliminarContacto(contactos.id)"></i>
+          </td>
         </tr>
+
+        <tr *ngIf="selectedContactIndex === index" class="par">
+          <td colspan="6">
+            <div class="detalles">
+              <p><b>Teléfono 2:</b> {{ contactos.telefonos2 ?? "Vacío" }}</p>
+              <p><b>Observaciones:</b> {{ contactos.observaciones }}</p>
+              <p><b>Fecha de creación:</b> {{ contactos.created_at }}</p>
+              <p><b>Fecha de última modificación:</b> {{ contactos.updated_at }}</p>
+            </div>
+          </td>
+        </tr>
+
+
+        }@else{
+
+        <tr class="impar">
+          <td data-label="Nombre" (click)="toggleDetails(index)">{{ contactos.nombre }}</td>
+          <td data-label="Apellidos" (click)="toggleDetails(index)">{{ contactos.apellidos }}</td>
+          <td data-label="Correo" (click)="toggleDetails(index)">{{ contactos.email }}</td>
+          <td data-label="Teléfono" (click)="toggleDetails(index)">{{ contactos.telefono1 }}</td>
+          <td data-label="Cliente" (click)="toggleDetails(index)">{{ clientesNombres[index] }}</td>
+          <td>
+            <i class="bi bi-pencil-square icono" type="button" data-bs-toggle="modal" data-bs-target="#detallesContacto"
+              (click)="openEditModal(contactos)"></i>
+            <i class="bi bi-trash2 icono" (click)="eliminarContacto(contactos.id)"></i>
+          </td>
+        </tr>
+
+        <tr *ngIf="selectedContactIndex === index" class="impar">
+          <td colspan="6">
+            <div class="detalles">
+              <p><b>Teléfono 2:</b> {{ contactos.telefonos2 ?? "Vacío" }}</p>
+              <p><b>Observaciones:</b> {{ contactos.observaciones ?? "Vacío" }}</p>
+              <p><b>Fecha de creación:</b> {{ contactos.created_at }}</p>
+              <p><b>Fecha de última modificación:</b> {{ contactos.updated_at }}</p>
+            </div>
+          </td>
+        </tr>
+        }
+
+
         }
       </tbody>
     </table>
+    <!-- Modal  "-->
+    <div class="modal fade" id="detallesContacto" tabindex="-1" aria-labelledby="EdicionContacto" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header d-flex flex-row justify-content-between align-items-center">
+            <h1 class="modal-title fs-5" id="EdicionContacto">Edición de contactos</h1>
+            <i class="bi bi-x-circle fs-5 align-self-end formulario-boton-modalCerrar" type="button"
+              data-bs-dismiss="modal" aria-label="Close"></i>
+          </div>
+
+          <form [formGroup]="editForm" (ngSubmit)="editarContacto()">
+            <div class="modal-body">
+              <div class="m-2">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input class="form-control" id="nombre" placeholder="Ingrese el nombre" formControlName="nombre">
+              </div>
+              <div class="m-2">
+                <label for="apellidos" class="form-label">Apellidos</label>
+                <input class="form-control" id="apellidos" placeholder="Ingrese el apellidos"
+                  formControlName="apellidos">
+              </div>
+
+              <div class="m-2">
+                <label for="encargado" class="form-label">Selecciona un Cliente (Empresa) que se encargará
+                </label>
+                <select class="form-select seleccionables" id="cliente_id" aria-label="Selecciona clientes id"
+                  formControlName="cliente_id">
+                  <ng-container *ngFor="let cliente of ARclientes; trackBy: trackByIndex">
+                    <option [value]="cliente.id" class="text-capitalize">
+                      {{ cliente.nombre }}
+                    </option>
+                  </ng-container>
+                </select>
+              </div>
+
+              <div class="m-2">
+                <label for="telefono1" class="form-label">Teléfono 1</label>
+                <input class="form-control" id="telefono1" placeholder="Ingrese el primer teléfono"
+                  formControlName="telefono1">
+              </div>
+
+              <div class="m-2">
+                <label for="telefono2" class="form-label">Teléfono 2</label>
+                <input class="form-control" id="telefono2" placeholder="Ingrese el segundo teléfono"
+                  formControlName="telefono2">
+              </div>
+
+              <div class="m-2">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" id="email" placeholder="Ingrese el correo" formControlName="email">
+              </div>
+
+              <div class="m-2">
+                <label for="observaciones" class="form-label">Observaciones</label>
+                <textarea class="form-control" id="observaciones" rows="3" formControlName="observaciones"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary formulario-boton-cerrar"
+                data-bs-dismiss="modal"
+                (click)="cerrarFormularioEditar($event)">Cerrar</button>
+              <button type="submit" class="btn btn-primary formulario-boton-guardar">Guardar cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+    }}
   </div>
 </div>

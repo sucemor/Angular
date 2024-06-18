@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.estado {
+  font-size: 14px;
+  letter-spacing: 1px;
+  width: fit-content;
+  height: 25px;
+  background-color: var(--color-blanco);
+  border-radius: 20px;
+
+  &-cajon-izquierda {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  &-cajon-derecha {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  &-cajon {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 25px;
+
+    & p {
+      background-color: transparent;
+      padding: 0 0.5rem;
+      color: var(--color-secundario);
+    }
+  }
+
+  &-cajon-circulo {
+    border-radius: 50%;
+    border: 1px solid var(--color-primario);
+    background-color: var(--color-fondo);
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.completado {
+  font-weight: 700;
+  color: var(--color-primario) !important; // Color para los párrafos
+  border-color: orange; // Color para los círculos
+  border-radius: 20px;
+  background-color: #FFC56D !important; // Fondo para los círculos, si se quiere cambiar
+
+  & .estado-cajon-circulo {
+    background-color: #CC9300 !important;
+  }
+}
+
+.cliente {
+  border-radius: 10px;
+  border: none;
+  background-color: var(--color-blanco);
+  padding: 0.7rem;
+
+  & h4 {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  & p {
+    font-size: 16px;
+    color: var(--color-primario);
+
+    & a {
+      word-break: break-word;
+      overflow-wrap: break-word;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+//Tamaños de letras
+@media (min-width: 768px) and (max-width: 995px) {
+  .estado {
+    font-size: 12px;
+    letter-spacing: 1px;
+    width: auto;
+    height: fit-content;
+
+    &-cajon {
+      height: fit-content;
+
+      & p {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  .cliente {
+    & h4 {
+      font-size: 15px;
+    }
+
+    & p {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .estado {
+    font-size: 12px;
+    letter-spacing: 1px;
+    width: auto;
+    height: fit-content;
+
+    &-cajon {
+      height: fit-content;
+
+      & p {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+
+  .cliente {
+    & h4 {
+      font-size: 14px;
+    }
+
+    & p {
+      font-size: 14px;
+    }
+  }
+}
